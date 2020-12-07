@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" />
+    <title>Jess Bommer Portfolio</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="./style.css">
+    </link>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <h1>Art vs Art</h1>
+    
+    <div id="grid">
+
+        <div class="cell cell-1" id="col-1">
+        <img class="avatar" src="https://www.tate.org.uk/art/images/work/T/T05/T05010_10.jpg"></img>
+        <h2>Modern Art</h2>
+            <form>
+                <div class="form-group">
+                    <div class="container">
+                        <div class="row">
+                            <button type="button" class="btn btn-secondary btn-sm btn-block" id="call-api-btn1">Make a splash ...</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="cell cell-2" id="col-2">
+
+        <div id="divArtBattle"></div>
+            <!-- place for API image through jQuery-->
+            <!-- place for API title and author through jQuery-->
+            <!-- code for text to appear re battle through app.js javascript-->
+            <!-- don't forget to have image appear 'winner' and loser in cell-1 and cell-2 at end of battle!! -->
+        </div>
+        <div class="cell cell-3" id="col-3">
+        <img class="avatar" src="https://images.uffizi.it/production/attachments/1506337803506060-raffaello-madonna-cardellino-principale.jpg?ixlib=rails-2.1.3&w=1200&h=800&fit=clip&crop=center&fm=gjpg&auto=compress"></img>
+        <!-- <img id="avatar2" src="https://news.artnet.com/app/news-upload/2017/01/1024px-Sandro_Botticelli_-_Madonna_del_Magnificat_-_Google_Art_Project.jpg"></img>     -->
+        <h2>Classical Art</h2>
+         <form> 
+                    <div class="form-group">
+                    <div class="container">       
+                        <div class="row">
+                            <button type="button" class="btn btn-secondary btn-sm btn-block" id="call-api-btn2">Colour inside the line!</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="./app.js"></script>
+</body>
+</html>

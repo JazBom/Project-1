@@ -1,0 +1,49 @@
+body {
+    padding-top: 5%;
+    text-align: center;
+}
+h1 {
+    font-size: 3rem;
+    padding-bottom: 15px;
+}
+h2 {
+    font-size: 1.5rem;
+    padding-bottom: 25px;
+}
+p {
+    font-size: 0.7rem;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+.form {
+    display: inline-block;
+    text-align: center;
+}
+.container {
+    width: 40%;
+    padding-bottom: 50px;
+}
+.avatar {
+    width: 50%;
+    vertical-align: middle;
+    padding-bottom: 10px;
+    /* border-radius: 50%; */
+}
+
+#grid {
+    padding-top: 50px;
+    height: 90vh;
+    margin: 1rem;
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+.cell {
+    font-size: 1rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+
+
