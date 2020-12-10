@@ -10,8 +10,8 @@ class Player {
      // initiate an attack
     attack(enemy, damage){
         if(!enemy.dead){
-            console.log(`${this.name} lobs a shot worth:`, damage);
             console.log(`${enemy.name} has been attacked by ${this.name}.`);
+            console.log(`${this.name} reduces enemy years by`, damage);
             enemy.takeHit(damage);
         } 
         return damage;
@@ -20,6 +20,7 @@ class Player {
     takeHit(damage){
         this.hitpoints = this.hitpoints - damage;
         this.dead = this.hitpoints <= 0;
+        
     }
 };
 // players
@@ -30,6 +31,7 @@ class ModernArtPlayer extends Player {
     attackEnemy(enemy) {
         this.attackpoint = Math.floor(Math.random() * 5);
         super.attack(enemy, this.attackpoint);
+        return enemy.hitpoints
     }
 };
 class ClassicArtPlayer extends Player {
@@ -39,6 +41,7 @@ class ClassicArtPlayer extends Player {
     attackEnemy(enemy) {
         this.attackpoint = Math.floor(Math.random() * 3) + 1;
         super.attack(enemy, this.attackpoint);
+        return enemy.hitpoints
     }
 };
 
@@ -137,6 +140,7 @@ $("#call-api-btn1").on("click", () => {
     const classicArt = window.classicArt;
     // invoke Modern Art attack as result of button1 click event
     modernArt.attackEnemy(classicArt);
+    $('#classicArtVitals').html(`<p> Life: ${classicArt.hitpoints} years</p>`);
     // modernArt.updateLifespan(player2);
     // ... resulting gameplay - text and image display under various alive/dead conditions....
     if(!modernArt.dead && !classicArt.dead){
@@ -231,7 +235,7 @@ $("#call-api-btn2").on("click", () => {
 
     // classic art attacks
     classicArt.attackEnemy(modernArt);
-    // classicArt.updateLifespan(player1);
+    $('#modernArtVitals').html(`<p> Life: ${modernArt.hitpoints} years</p>`);
     console.log(modernArt);
     // gameplay - display text, images under various alive/dead conditions
     if(!modernArt.dead && !classicArt.dead){
