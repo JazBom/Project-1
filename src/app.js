@@ -116,7 +116,7 @@ window.classicArt = new ClassicArtPlayer(player2.name, player2.lifespan);
 
 //choose starting player in reverse
 const secondPlayer = Math.round(Math.random() + 1);
-$("#call-api-btn" + secondPlayer).addClass('disabled');
+$("#call-api-btn" + secondPlayer).attr('disabled', 'disabled');
 // Display avatar, name and dynamic vitals (based on changing hitpoints, initially defined as lifespan in object)
 $("#avatarModernArt").attr("src", `${player1.avatar}`);
 $('#playerModernArtName').append(`<h2>${player1.name}</h2>`);
@@ -133,8 +133,8 @@ $("#call-api-btn1").on("click", () => {
     // console log attack
     console.log("Call api button 1 was clicked!");
     //button disabled if clicked so it is other player's turn next
-    $('#call-api-btn1').addClass('disabled');
-    $('#call-api-btn2').removeClass('disabled');
+    $('#call-api-btn1').attr('disabled', 'disabled');
+    $('#call-api-btn2').removeAttr('disabled');
     // allow attack functions to be read throughout script
     const modernArt = window.modernArt;
     const classicArt = window.classicArt;
@@ -172,23 +172,23 @@ $("#call-api-btn1").on("click", () => {
         $("#classicArtWinner").prepend(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left.. </p>`);
         $("#classicArtWinner").prepend(`<p>${modernArt.name} has no years left..</p>`); 
         $("#classicArtWinner").append(`<h1>Game over</h1>`);
-        $('#call-api-btn2').addClass('disabled');
-        $('#call-api-btn1').addClass('disabled');
+        $('#call-api-btn2').attr('disabled', 'disabled');
+        $('#call-api-btn1').attr('disabled', 'disabled');
     } else if(classicArt.dead && !modernArt.dead){
         //Classic art dead
         $("#divArtBattle").prepend(`<h1 id="modernArtWinner">Modern Art wins!!!</h1>`);
         $("#modernArtWinner").prepend(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left.. </p>`);
         $("#modernArtWinner").append(`<p>${classicArt.name} has no years left..</p>`); 
         $("#modernArtWinner").append(`<h2 >Game over</h2>`);
-        $('#call-api-btn2').addClass('disabled');
-        $('#call-api-btn1').addClass('disabled');
+        $('#call-api-btn2').attr('disabled', 'disabled');
+        $('#call-api-btn1').attr('disabled', 'disabled');
     } else if(classicArt.dead && modernArt.dead){
         // both art dead
         $("#divArtBattle").append(`<h1 id="gameOver">Game over. No winners...art is dead....</h1>`);
         $("#gameOver").prepend(`<p>${modernArt.name} has no years left..</p>`); 
         $("#gameOver").prepend(`<p> ... ${classicArt.name} also has no years left.. </p>`);
-        $('#call-api-btn2').addClass('disabled');
-        $('#call-api-btn1').addClass('disabled');
+        $('#call-api-btn2').attr('disabled', 'disabled');
+        $('#call-api-btn1').attr('disabled', 'disabled');
     } else {
         // else - must be error
         $("#divArtBattle").prepend(`<h2>Oops...look like there's paint on our face.</h2>`);
@@ -227,8 +227,8 @@ $("#call-api-btn2").on("click", () => {
     //console log attack
     console.log("Call api button 2 was clicked!");
      //button disabled if clicked so it is other player's turn next
-    $('#call-api-btn2').addClass('disabled');
-    $('#call-api-btn1').removeClass('disabled');
+    $('#call-api-btn2').attr('disabled', 'disabled');
+    $('#call-api-btn1').removeAttr('disabled');
     // allow attack functions to be read throughout script
     const modernArt = window.modernArt;
     const classicArt = window.classicArt;
@@ -267,23 +267,23 @@ $("#call-api-btn2").on("click", () => {
         $("#modernArtWinner").prepend(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p>`);
         $("#modernArtWinner").prepend(`<p>${classicArt.name} has no years left..</p>`); 
         $("#modernArtWinner").append(`<h2>Game over</h2>`);
-        $('#call-api-btn2').addClass('disabled');
-        $('#call-api-btn1').addClass('disabled');
+        $('#call-api-btn2').attr('disabled', 'disabled');
+        $('#call-api-btn1').attr('disabled', 'disabled');
     } else if(!classicArt.dead && modernArt.dead){
         // Modern art dead
         $("#divArtBattle").prepend(`<h1 id="classicArtWinner">Classical Art wins!!!</h1>`);
         $("#classicArtWinner").prepend(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left..</p>`);
         $("#classicArtWinner").prepend(`<p>${modernArt.name} has no years left..</p>`); 
         $("#classicArtWinner").append(`<h1>Game over</h1>`);
-        $('#call-api-btn2').addClass('disabled');
-        $('#call-api-btn1').addClass('disabled');
+        $('#call-api-btn2').attr('disabled', 'disabled');
+        $('#call-api-btn1').attr('disabled', 'disabled');
     } else if(classicArt.dead && modernArt.dead){
         // both art dead
         $("#divArtBattle").prepend(`<h1 id="gameOver">Game over. No winners...art is dead....</h1>`);
         $("#gameOver").append(`<p>${modernArt.name} has no years left..</p>`); 
         $("#gameOver").append(`<p>...${classicArt.name} also has no years left... </p>`);
-        $('#call-api-btn2').addClass('disabled');
-        $('#call-api-btn1').addClass('disabled');
+        $('#call-api-btn2').attr('disabled', 'disabled');
+        $('#call-api-btn1').attr('disabled', 'disabled');
     } else {
         // else must be error
         $("#divArtBattle").prepend(`<h2>Oops...look like there's paint on our face.</h2>`);
@@ -291,7 +291,7 @@ $("#call-api-btn2").on("click", () => {
 
     if(!classicArt.dead && !modernArt.dead){
         const imgData2 = $.get(
-            `https://picsum.photos/v2/list`, (data2) => {
+            `https://picsum.photos/v2/list/`, (data2) => {
                 // Returning all data
                 console.log(data2);
                 // Extract info

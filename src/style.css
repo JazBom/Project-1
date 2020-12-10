@@ -1,6 +1,7 @@
 body {
     padding-top: 5%;
     text-align: center;
+    background-color: whitesmoke;
 }
 h1 {
     font-size: 4rem;
@@ -34,6 +35,12 @@ p {
     font-size: 1rem;
     text-align: center;
     padding: 1rem;
+}
+.cell-1 {
+    background-color: cornflowerblue;
+}
+.cell-3 {
+    background-color: cadetblue;
 }
 .image-cell-2 {
     border-radius: 2.5%;
