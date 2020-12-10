@@ -1,11 +1,12 @@
 body {
     padding-top: 5%;
     text-align: center;
-    background-color: whitesmoke;
+    color: rgba(7, 7, 7, 0.65);
 }
 h1 {
-    font-size: 4rem;
-    padding-bottom: 5rem;
+    font-size: 3rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
 }
 h2 {
     font-size: 1.5rem;
@@ -23,13 +24,17 @@ p {
 }
 .container {
     width: 50%;
-    padding-bottom: 50px;
+    padding-bottom: 1rem;
 }
 .avatar {
     width: 25%;
     vertical-align: middle;
-    padding-bottom: 10px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     /* border-radius: 50%; */
+}
+.playerName {
+    padding: 0.5rem;
 }
 .cell {
     font-size: 1rem;
@@ -47,13 +52,19 @@ p {
     outline-width: 0.5rem;
     outline-color: black;
 }
+#header {
+    color: rgba(7, 7, 7, 0.4);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 10rem;
+    padding: 0;
+}
 #grid {
     padding-top: 50px;
     height: 90vh;
     margin: 1rem;
     display: grid;
     grid-gap: 1px;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
 }
 

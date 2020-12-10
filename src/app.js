@@ -46,63 +46,69 @@ class ClassicArtPlayer extends Player {
 };
 
 // Player options
-let playerModernArtArray = [
+let playerArray = [
     {name: 'Picasso',
     lifespan: 19,
+    type: 'modern',
     avatar: 'https://www.tate.org.uk/art/images/work/T/T05/T05010_10.jpg'
     },
     {name:'Cezanne',
     lifespan: 17,
+    type: 'modern',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Paul_C%C3%A9zanne%2C_1888-90%2C_Madame_C%C3%A9zanne_%28Hortense_Fiquet%2C_1850%E2%80%931922%29_in_a_Red_Dress%2C_oil_on_canvas%2C_116.5_x_89.5_cm%2C_The_Metropolitan_Museum_of_Art%2C_New_York.jpg/1024px-thumbnail.jpg'
     },
     {name:'Gauguin',
     lifespan: 14,
+    type: 'modern',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Paul_Gauguin_040.jpg/1024px-Paul_Gauguin_040.jpg'
     },
     {name:'Munch',
     lifespan: 16,
+    type: 'modern',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/1280px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg'
     },
-    {name:'Mondrian',
+    {name:'van Gogh',
     lifespan: 17,
+    type: 'modern',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Tableau_I%2C_by_Piet_Mondriaan.jpg/1280px-Tableau_I%2C_by_Piet_Mondriaan.jpg'
-    }
-]
-let playerClassicArtArray = [
-    {name:'Rafaello',
+    }, {name:'Raffaello',
     lifespan: 12,
+    type: 'classical',
     avatar: 'https://images.uffizi.it/production/attachments/1506337803506060-raffaello-madonna-cardellino-principale.jpg?ixlib=rails-2.1.3&w=1200&h=800&fit=clip&crop=center&fm=gjpg&auto=compress'
     },
     {name:'Michelangelo',
     lifespan: 8,
+    type: 'classical',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Tondo_Doni%2C_por_Miguel_%C3%81ngel.jpg/1280px-Tondo_Doni%2C_por_Miguel_%C3%81ngel.jpg'
     },
     {name:'Da Vinci',
     lifespan: 15,
+    type: 'classical',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/1024px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg'
     },
     {name:'Titian',
     lifespan: 20,
+    type: 'classical',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Titian_Bacchus_and_Ariadne.jpg/1920px-Titian_Bacchus_and_Ariadne.jpg'
     },
     {name: 'Boticelli',
     lifespan: 18,
+    type: 'classical',
     avatar: 'https://news.artnet.com/app/news-upload/2017/01/1024px-Sandro_Botticelli_-_Madonna_del_Magnificat_-_Google_Art_Project.jpg'
     }
 ]
 // declare vars for player object elements in player class arrays
-//Modern Art class player array element vars
-const picasso = playerModernArtArray[0];
-const cezanne =  playerModernArtArray[1];
-const gauguin = playerModernArtArray[2];
-const munch =  playerModernArtArray[3];
-const mondrian =  playerModernArtArray[4];
-//Classic Art class player array element vars
-const rafaello = playerClassicArtArray[0];
-const michelangelo =  playerClassicArtArray[1];
-const daVinci = playerClassicArtArray[2];
-const titian =  playerClassicArtArray[3];
-const boticelli =  playerClassicArtArray[4];
+//player array element vars
+const picasso = playerArray[0];
+const cezanne =  playerArray[1];
+const gauguin = playerArray[2];
+const munch =  playerArray[3];
+const vanGogh =  playerArray[4];
+const raffaello = playerArray[5];
+const michelangelo =  playerArray[6];
+const daVinci = playerArray[7];
+const titian =  playerArray[8];
+const boticelli =  playerArray[9];
 
 // ENTRY
 //choose and declare Players
@@ -119,11 +125,11 @@ const secondPlayer = Math.round(Math.random() + 1);
 $("#call-api-btn" + secondPlayer).attr('disabled', 'disabled');
 // Display avatar, name and dynamic vitals (based on changing hitpoints, initially defined as lifespan in object)
 $("#avatarModernArt").attr("src", `${player1.avatar}`);
-$('#playerModernArtName').append(`<h2>${player1.name}</h2>`);
+$('#playerModernArtName').append(`<h2 class="playerName">${player1.name}</h2>`);
 $('#modernArtVitals').append(`<p> Life: ${player1.lifespan} years</p>`); 
 // $('#playerModernArtName').append(`<h3>${playerModernArtArray[3].lifespan}</h3>`);
 $("#avatarClassicArt").attr("src", `${player2.avatar}`);
-$('#playerClassicArtName').append(`<h2>${player2.name}</h2>`);
+$('#playerClassicArtName').append(`<h2 class="playerName">${player2.name}</h2>`);
 $('#classicArtVitals').append(`<p> Life: ${player2.lifespan} years</p>`);
 // $('#playerClassicArtName').append(`<h3>${playerClassicArtArray[1].lifespan}</h3>`);
 
@@ -158,7 +164,7 @@ $("#call-api-btn1").on("click", () => {
         const sentence1B = [
             `is still drawing those perfect heads.`, 
             `is respected by other artists, and will not retire!!`,
-            `takes abuse from no-one (but Kings and popes)...`
+            `takes abuse from no-one but Kings and popes...`
         ];
         const random1 = Math.floor(Math.random() * quoteModernArt.length);
         $("#divArtBattle").prepend(`<h1 id="modernArtQuote">${quoteModernArt[random1]}</h1>`);
@@ -178,8 +184,8 @@ $("#call-api-btn1").on("click", () => {
         //Classic art dead
         $("#divArtBattle").prepend(`<h1 id="modernArtWinner">Modern Art wins!!!</h1>`);
         $("#modernArtWinner").prepend(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left.. </p>`);
-        $("#modernArtWinner").append(`<p>${classicArt.name} has no years left..</p>`); 
-        $("#modernArtWinner").append(`<h2 >Game over</h2>`);
+        $("#modernArtWinner").prepend(`<p>${classicArt.name} has no years left..</p>`); 
+        $("#modernArtWinner").append(`<h1 >Game over</h1>`);
         $('#call-api-btn2').attr('disabled', 'disabled');
         $('#call-api-btn1').attr('disabled', 'disabled');
     } else if(classicArt.dead && modernArt.dead){
@@ -200,8 +206,8 @@ $("#call-api-btn1").on("click", () => {
             const i = Math.floor(Math.random() * 31); // change '31' depending on how many images in array
             const dataModernArt = data1[i]; // change [i] to [random number 1-500]
             const id1 = dataModernArt.id; 
-            const width = 400;
-            const height = 200;
+            const width = 600;
+            const height = 400;
             const author1 = dataModernArt.author;
             const url1 = `https://picsum.photos/id/${id1}/${width}/${height}`;
     
@@ -216,7 +222,7 @@ $("#call-api-btn1").on("click", () => {
             
             //Appending the elements on the DOM
             $("#divArtBattle").prepend(image1);
-            $("#imageP1").prepend(authorName1);
+            $("#imageP1").append(authorName1);
             // $("#col-2").append(imageUrl);
         }
     );
@@ -253,7 +259,7 @@ $("#call-api-btn2").on("click", () => {
         const sentence2B = [
             `is still young and beautiful... watch out.`, 
             `eats pain(t) for breakfast and is coming for you...`,
-            `is still in the studio... the student will soon become the master.`
+            `is still in the studio... and the student will soon become the master.`
         ];
         const random2 = Math.floor(Math.random() * quoteModernArt.length);
         console.log(quoteModernArt[random2]);
@@ -299,8 +305,8 @@ $("#call-api-btn2").on("click", () => {
                     const i = Math.floor(Math.random() * 30);  // change '31' depending on how many images in array
                     const dataClassicArt = data2[i];
                     const id2 = dataClassicArt.id; // why does this keep throwing an error?
-                    const width = 400;
-                    const height = 200;
+                    const width = 600;
+                    const height = 400;
                     const author2 = dataClassicArt.author;
                     const url2 = `https://picsum.photos/id/${id2}/${width}/${height}`;
             
@@ -316,7 +322,7 @@ $("#call-api-btn2").on("click", () => {
                     
                     //Appending the elements on the DOM
                     $("#divArtBattle").prepend(image2);
-                    $("#imageP2").prepend(authorName2);
+                    $("#imageP2").append(authorName2);
                     // $("#col-2").append(imageUrl);
                 })
     }
