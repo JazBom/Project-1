@@ -32,89 +32,186 @@ class Player {
         }
     }
 }
+
+// players
 class ModernArtPlayer extends Player {
     constructor(name, hitpoints){
         super(name, hitpoints);
         }
     attackEnemy(enemy) {
-        this.attackpoint = Math.floor(Math.random() * 3);
+        this.attackpoint = Math.floor(Math.random() * 5);
         super.attack(enemy, this.attackpoint);
     }
 }
 class ClassicArtPlayer extends Player {
     constructor(name, hitpoints){
         super(name, hitpoints);
-        this.attackpoint = 2;
     }
     attackEnemy(enemy) {
+        this.attackpoint = Math.floor(Math.random() * 3) + 1;
         super.attack(enemy, this.attackpoint);
     }
 }
+
+// Player options
+let playerModernArtArray = [
+    {name: 'Picasso',
+    lifespan: 19,
+    avatar: 'https://www.tate.org.uk/art/images/work/T/T05/T05010_10.jpg'
+    },
+    {name:'Cezanne',
+    lifespan: 17,
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Paul_C%C3%A9zanne%2C_1888-90%2C_Madame_C%C3%A9zanne_%28Hortense_Fiquet%2C_1850%E2%80%931922%29_in_a_Red_Dress%2C_oil_on_canvas%2C_116.5_x_89.5_cm%2C_The_Metropolitan_Museum_of_Art%2C_New_York.jpg/1024px-thumbnail.jpg'
+    },
+    {name:'Gauguin',
+    lifespan: 14,
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Paul_Gauguin_040.jpg/1024px-Paul_Gauguin_040.jpg'
+    },
+    {name:'Munch',
+    lifespan: 16,
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/1280px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg'
+    },
+    {name:'Mondrian',
+    lifespan: 17,
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Tableau_I%2C_by_Piet_Mondriaan.jpg/1280px-Tableau_I%2C_by_Piet_Mondriaan.jpg'
+    }
+]
+let playerClassicArtArray = [
+    {name:'Rafaello',
+    lifespan: 12,
+    avatar: 'https://images.uffizi.it/production/attachments/1506337803506060-raffaello-madonna-cardellino-principale.jpg?ixlib=rails-2.1.3&w=1200&h=800&fit=clip&crop=center&fm=gjpg&auto=compress'
+    },
+    {name:'Michelangelo',
+    lifespan: 8,
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Tondo_Doni%2C_por_Miguel_%C3%81ngel.jpg/1280px-Tondo_Doni%2C_por_Miguel_%C3%81ngel.jpg'
+    },
+    {name:'Da Vinci',
+    lifespan: 15,
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/1024px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg'
+    },
+    {name:'Titian',
+    lifespan: 20,
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Titian_Bacchus_and_Ariadne.jpg/1920px-Titian_Bacchus_and_Ariadne.jpg'
+    },
+    {name: 'Boticelli',
+    lifespan: 18,
+    avatar: 'https://news.artnet.com/app/news-upload/2017/01/1024px-Sandro_Botticelli_-_Madonna_del_Magnificat_-_Google_Art_Project.jpg'
+    }
+]
+// declare vars for player object elements in player class arrays
+//Modern Art class player array element vars
+const picasso = playerModernArtArray[0];
+const cezanne =  playerModernArtArray[1];
+const gauguin = playerModernArtArray[2];
+const munch =  playerModernArtArray[3];
+const mondrian =  playerModernArtArray[4];
+//Classic Art class player array element vars
+const rafaello = playerClassicArtArray[0];
+const michelangelo =  playerClassicArtArray[1];
+const daVinci = playerClassicArtArray[2];
+const titian =  playerClassicArtArray[3];
+const boticelli =  playerClassicArtArray[4];
+
+// Declare and Choose Players
+window.modernArt = new ModernArtPlayer(gauguin.name, gauguin.lifespan);
+window.classicArt = new ClassicArtPlayer(daVinci.name, daVinci.lifespan);
+console.log(modernArt);
+console.log(classicArt);
+
+// Display avatar, name and vitals
+// alternative way of appending
+        // $("#answer-label").html(`"${data.value}"`);
+        // $("#url").html(url);
+
+//for the quote and image together - 
+        // console.log(data[0].quote);
+        // console.log(data[0].image);
+        // const imgUrl = data[0].image;
+        // const imgTag = `<img id="img-from-api" src"${imgUrl}"></img>`;
+        // $("#answer-label").html(data[0].quote);
+         // $("#img-from-api").attr("src", imgUrl);
+
+$("#avatarModernArt").attr("src", `${gauguin.avatar}`);
+$('#playerModernArtName').append(`<h2>${gauguin.name}</h2>`);
+$('#modernArtVitals').append(`<p> Life: ${gauguin.lifespan} years</p>`); 
+// $('#playerModernArtName').append(`<h3>${playerModernArtArray[3].lifespan}</h3>`);
+$("#avatarClassicArt").attr("src", `${daVinci.avatar}`);
+$('#playerClassicArtName').append(`<h2>${daVinci.name}</h2>`);
+$('#classicArtVitals').append(`<p> Life: ${daVinci.lifespan} years</p>`);
+// $('#playerClassicArtName').append(`<h3>${playerClassicArtArray[1].lifespan}</h3>`);
+
 // entry point 
-
-
-
 //determine starting player
 const secondPlayer = Math.round(Math.random() + 1);
 $("#call-api-btn" + secondPlayer).addClass('disabled');
+// figure out how to make this dynamic - arrays?
+let classicArtLife = window.classicArt.hitpoints;
+let modernArtLife = window.modernArt.hitpoints;
 
-// players
-window.modernArt = new ModernArtPlayer('Picasso', 10);
-console.log(modernArt);
-window.classicArt = new ClassicArtPlayer('Raffaello', 10);
-console.log(classicArt);
-
-// game play
+// Game play
+// Modern Art attacks - Button 1
 $("#call-api-btn1").on("click", () => { 
-    const modernArt = window.modernArt;
-    const classicArt = window.classicArt;
+    // console log attack
     console.log("Call api button 1 was clicked!");
+    //button disabled if clicked so it is other player's turn next
     $('#call-api-btn1').addClass('disabled');
     $('#call-api-btn2').removeClass('disabled');
-    // modern art attacks
+    // allow attack functions to be read throughout script
+    const modernArt = window.modernArt;
+    const classicArt = window.classicArt;
+    // invoke Modern Art attack as result of button1 click event
     modernArt.attackEnemy(classicArt);
-    console.log(classicArt);
-    // write out gameplay....
+    // ... resulting gameplay - text and image display under various alive/dead conditions....
     if(!modernArt.dead && !classicArt.dead){
-        // gameplay if both still alive
-        // object - display values under buttons?
+        // if both still alive -> gameplay 
         const quoteModernArt = [
             `"Inhale colour!!! Die young!!!"`, 
             `"If no mistake you have made, losing you are..."`,
-            `"Draw a circle... then imagine it's a head... or whatever you f&^%ing want it to be."`
+            `"Draw a circle... then imagine it's a head... or whatever you bloody want it to be."`
         ];
         const sentence1A = [
             `slathers toxic cobalt violet on his enemy.`,
             `sells a finger painting for $1.5 million.`,
-            `doesn't use brown or black... and it looks amazing!!`
+            `uses colour direct from the tube... and it looks amazing!!`
         ];
         const sentence1B = [
             `is still drawing those perfect heads.`, 
             `is respected by other artists, and will not retire!!`,
-            `takes abuse only from Kings and popes.`
+            `takes abuse from no-one (but Kings and popes)...`
         ];
         const random1 = Math.floor(Math.random() * quoteModernArt.length);
         $("#divArtBattle").prepend(`<h1 id="modernArtQuote">${quoteModernArt[random1]}</h1>`);
         $("#modernArtQuote").append(`<h2>${modernArt.name} ${sentence1A[random1]}</h2>`); // replaces this with random sentence - build random sentence generator
-        $("#modernArtQuote").append(`<p>${classicArt.name} loses ${modernArt.attackpoint} year${modernArt.attackpoint>1?'s':''} of his life...  Only ${classicArt.hitpoints} good painting years left.</p>`); // fix plural
+        $("#modernArtQuote").append(`<p>${classicArt.name} loses ${modernArt.attackpoint} year${modernArt.attackpoint===1?'':'s'} of his life...  Only ${classicArt.hitpoints} good painting years left.</p>`);
+        classicArtLife = classicArt.hitpoints;
+        // fix plural
         $("#modernArtQuote").append(`<p>But ${classicArt.name} ${sentence1B[random1]}</p>`);
         console.log(classicArt);
     } else if(modernArt.dead && !classicArt.dead) {
-        // console.log(`Picasso is the winner!!! Game over Raffaello.`)
-        $("#divArtBattle").prepend(`<h2 "modernArtWinner">Picasso is the winner!!! Game over Raffaello.</h2>`);
-        $("#modernArtWinner").prepend(`<p>${modernArt.name} has no years left..</p>`); 
-        $("#modernArtWinner").prepend(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left.. </p>`);
+        // Modern art dead
+        $("#divArtBattle").prepend(`<h1 id="classicArtWinner">Classical Art wins!!!</h1>`);
+        $("#classicArtWinner").prepend(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left.. </p>`);
+        $("#classicArtWinner").prepend(`<p>${modernArt.name} has no years left..</p>`); 
+        $("#classicArtWinner").append(`<h1>Game over</h1>`);
+        $('#call-api-btn2').addClass('disabled');
+        $('#call-api-btn1').addClass('disabled');
     } else if(classicArt.dead && !modernArt.dead){
-        // console.log(`Raffaello is the winner!!! Game over Picasso.`);
-        $("#divArtBattle").prepend(`<h2 id="classicArtWinner">Raffaello is the winner!!! Game over Picasso.</h2>`);
-        $("#classicArtWinner").prepend(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left.. </p>`);
-        $("#classicArtWinner").prepend(`<p>${classicArt.name} has no years left..</p>`); 
+        //Classic art dead
+        $("#divArtBattle").prepend(`<h1 id="modernArtWinner">Modern Art wins!!!</h1>`);
+        $("#modernArtWinner").prepend(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left.. </p>`);
+        $("#modernArtWinner").prepend(`<p>${classicArt.name} has no years left..</p>`); 
+        $("#modernArtWinner").append(`<h2 >Game over</h2>`);
+        $('#call-api-btn2').addClass('disabled');
+        $('#call-api-btn1').addClass('disabled');
     } else if(classicArt.dead && modernArt.dead){
-        // console.log(`Game over. No winners...art is dead...`);
-        $("#divArtBattle").prepend(`<h2 id="gameOver">Game over. No winners...art is dead....</h2>`);
+        // both art dead
+        $("#divArtBattle").append(`<h1 id="gameOver">Game over. No winners...art is dead....</h1>`);
         $("#gameOver").prepend(`<p>${modernArt.name} has no years left..</p>`); 
         $("#gameOver").prepend(`<p> ... ${classicArt.name} also has no years left.. </p>`);
+        $('#call-api-btn2').addClass('disabled');
+        $('#call-api-btn1').addClass('disabled');
     } else {
+        // else - must be error
         $("#divArtBattle").prepend(`<h2>Oops...look like there's paint on our face.</h2>`);
     };
     const imgData1 = $.get(
@@ -147,23 +244,22 @@ $("#call-api-btn1").on("click", () => {
     );
 });
 
-
-// Every time Butto n#2 is pushed, this happens
-// Gameplay, points scoring, text re life left etc
-
-// including the image from a moden art collection appearing
+// Classic Art attacks - Button 2
 $("#call-api-btn2").on("click", () => { 
-    const modernArt = window.modernArt;
-    const classicArt = window.classicArt;
+    //console log attack
     console.log("Call api button 2 was clicked!");
+     //button disabled if clicked so it is other player's turn next
     $('#call-api-btn2').addClass('disabled');
     $('#call-api-btn1').removeClass('disabled');
-    // classic art attacks
+    // allow attack functions to be read throughout script
+    const modernArt = window.modernArt;
+    const classicArt = window.classicArt;
+    
+    
     classicArt.attackEnemy(modernArt);
-    console.log(modernArt);
-    // gameplay
+    // gameplay - display text, images under various alive/dead conditions
     if(!modernArt.dead && !classicArt.dead){
-        // object - display values under buttons?
+        // if both art alive 
         const quoteModernArt = [
             `"Eat my slow, painful lead poisoning for the sake of your art!!!"`, 
             `"Paint or paint not, there is no try ..."`,
@@ -184,26 +280,35 @@ $("#call-api-btn2").on("click", () => {
 
         $("#divArtBattle").prepend(`<h1 id="classicArtQuote">${quoteModernArt[random2]}</h1>`);
         $("#classicArtQuote").append(`<h2>${classicArt.name} ${sentence2A[random2]}.</h2>`);
-        $("#classicArtQuote").append(`<p>${modernArt.name} loses ${classicArt.attackpoint} year${classicArt.attackpoint>1?'s':''}  of his life...  Only ${modernArt.hitpoints} good painting years left.</p>`);  // fix plural
+        $("#classicArtQuote").append(`<p>${modernArt.name} loses ${classicArt.attackpoint} year${classicArt.attackpoint===1?'':'s'}  of his life...  Only ${modernArt.hitpoints} good painting years left.</p>`);  // fix plural
         $("#classicArtQuote").append(`<p>But ${modernArt.name} ${sentence2B[random2]}.</p>`);
+        modernArtLife = modernArt.hitpoints;
         console.log(modernArt);
-
     } else if (!modernArt.dead && classicArt.dead){
-        // console.log(`<p>Picasso is the winner!!! Game over Raffaello.</p>`)
-        $("#divArtBattle").prepend(`<h2 "modernArtWinner">Picasso is the winner!!! Game over Raffaello.</h2>`);
-        $("#modernArtWinner").prepend(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p>`); 
-        $("#modernArtWinner").prepend(`<p>${classicArt.name} has no years left.. </p>`);
+       // Classic art dead
+        $("#divArtBattle").prepend(`<h1 id="modernArtWinner">Modern Art wins!!!</h1>`);
+        $("#modernArtWinner").prepend(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p>`);
+        $("#modernArtWinner").prepend(`<p>${classicArt.name} has no years left..</p>`); 
+        $("#modernArtWinner").append(`<h2>Game over</h2>`);
+        $('#call-api-btn2').addClass('disabled');
+        $('#call-api-btn1').addClass('disabled');
     } else if(!classicArt.dead && modernArt.dead){
-        // console.log(`<p>Raffaello is the winner!!! Game over Picasso.</p>`);
-        $("#divArtBattle").prepend(`<h2 id="classicArtWinner">Raffaello is the winner!!! Game over Picasso.</h2>`);
-        $("#classicArtWinner").append(`<p>${modernArt.name} has no years left..</p>`); 
-        $("#classicArtWinner").append(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left.. </p>`);
+        // Modern art dead
+        $("#divArtBattle").prepend(`<h1 id="classicArtWinner">Classical Art wins!!!</h1>`);
+        $("#classicArtWinner").prepend(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left..</p>`);
+        $("#classicArtWinner").prepend(`<p>${modernArt.name} has no years left..</p>`); 
+        $("#classicArtWinner").append(`<h1>Game over</h1>`);
+        $('#call-api-btn2').addClass('disabled');
+        $('#call-api-btn1').addClass('disabled');
     } else if(classicArt.dead && modernArt.dead){
-        // console.log(`Game over. No winners...art is dead...`);
-        $("#divArtBattle").prepend(`<h2 id="gameOver">Game over. No winners...art is dead....</h2>`);
+        // both art dead
+        $("#divArtBattle").prepend(`<h1 id="gameOver">Game over. No winners...art is dead....</h1>`);
         $("#gameOver").append(`<p>${modernArt.name} has no years left..</p>`); 
         $("#gameOver").append(`<p>...${classicArt.name} also has no years left... </p>`);
+        $('#call-api-btn2').addClass('disabled');
+        $('#call-api-btn1').addClass('disabled');
     } else {
+        // else must be error
         $("#divArtBattle").prepend(`<h2>Oops...look like there's paint on our face.</h2>`);
     };
 
