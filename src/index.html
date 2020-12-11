@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no" />
-    <title>An Game for Art Nerds by Jess Bommer</title>
+    <title>A Game for Art Nerds by Jess Bommer</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -15,12 +15,15 @@
 
 <body>
     <h1 id="header">Art vs Art</h1>
-    
     <div id="grid">
-
         <div class="cell cell-1" id="col-1">
-        <img class="avatar" id="avatarModernArt"></img>
-        <div id="playerModernArtName"></div>
+        <h2>Player 1</h2>
+        <img class="avatar" id="modernArtAvatar"></img>
+        <div id="modernArtPlayerSelection">
+            <select name="modernArtPlayersList" id="modernArtPlayers">
+            </select>
+        </div>
+        <div id="modernArtVitals"></div>
             <form>
                 <div class="form-group">
                     <div class="container">
@@ -30,7 +33,7 @@
                     </div>
                 </div>
             </form>
-            <div id="modernArtVitals"></div>
+           
         </div>
         <div class="cell cell-2" id="col-2">
 
@@ -41,8 +44,13 @@
             <!-- don't forget to have image appear 'winner' and loser in cell-1 and cell-2 at end of battle!! -->
         </div>
         <div class="cell cell-3" id="col-3">
-        <img class="avatar" id="avatarClassicArt"></img>
-        <div id="playerClassicArtName"></div>
+        <h2>Player 2</h2>
+        <img class="avatar" id="classicArtAvatar"></img>
+        <div id="classicArtPlayerSelection">
+            <select name="classicArtPlayersList" id="classicArtPlayers">
+            </select>
+        </div>
+        <div id="classicArtVitals"></div>
          <form> 
                     <div class="form-group">
                     <div class="container">       
@@ -52,7 +60,7 @@
                     </div>
                 </div>
             </form>
-            <div id="classicArtVitals"></div>
+            
         </div>
     </div>
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->

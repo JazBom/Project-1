@@ -29,7 +29,7 @@ class ModernArtPlayer extends Player {
         super(name, hitpoints);
         }
     attackEnemy(enemy) {
-        this.attackpoint = Math.floor(Math.random() * 5);
+        this.attackpoint = Math.floor(Math.random() * 4);
         super.attack(enemy, this.attackpoint);
         return enemy.hitpoints
     }
@@ -39,7 +39,7 @@ class ClassicArtPlayer extends Player {
         super(name, hitpoints);
     }
     attackEnemy(enemy) {
-        this.attackpoint = Math.floor(Math.random() * 3) + 1;
+        this.attackpoint = Math.floor(Math.random() * 2) + 1;
         super.attack(enemy, this.attackpoint);
         return enemy.hitpoints
     }
@@ -48,90 +48,94 @@ class ClassicArtPlayer extends Player {
 // Player options
 let playerArray = [
     {name: 'Picasso',
-    lifespan: 19,
+    lifespan: 9,
     type: 'modern',
     avatar: 'https://www.tate.org.uk/art/images/work/T/T05/T05010_10.jpg'
     },
     {name:'Cezanne',
-    lifespan: 17,
+    lifespan: 7,
     type: 'modern',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Paul_C%C3%A9zanne%2C_1888-90%2C_Madame_C%C3%A9zanne_%28Hortense_Fiquet%2C_1850%E2%80%931922%29_in_a_Red_Dress%2C_oil_on_canvas%2C_116.5_x_89.5_cm%2C_The_Metropolitan_Museum_of_Art%2C_New_York.jpg/1024px-thumbnail.jpg'
     },
     {name:'Gauguin',
-    lifespan: 14,
+    lifespan: 5,
     type: 'modern',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Paul_Gauguin_040.jpg/1024px-Paul_Gauguin_040.jpg'
     },
     {name:'Munch',
-    lifespan: 16,
+    lifespan: 8,
     type: 'modern',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/1280px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg'
     },
-    {name:'van Gogh',
-    lifespan: 17,
+    {name:'Van Gogh',
+    lifespan: 4,
     type: 'modern',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Tableau_I%2C_by_Piet_Mondriaan.jpg/1280px-Tableau_I%2C_by_Piet_Mondriaan.jpg'
-    }, {name:'Raffaello',
-    lifespan: 12,
-    type: 'classical',
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg/1024px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg'
+    }, 
+    {name:'Raffaello',
+    lifespan: 4,
+    type: 'classic',
     avatar: 'https://images.uffizi.it/production/attachments/1506337803506060-raffaello-madonna-cardellino-principale.jpg?ixlib=rails-2.1.3&w=1200&h=800&fit=clip&crop=center&fm=gjpg&auto=compress'
     },
     {name:'Michelangelo',
-    lifespan: 8,
-    type: 'classical',
+    lifespan: 9,
+    type: 'classic',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Tondo_Doni%2C_por_Miguel_%C3%81ngel.jpg/1280px-Tondo_Doni%2C_por_Miguel_%C3%81ngel.jpg'
     },
     {name:'Da Vinci',
-    lifespan: 15,
-    type: 'classical',
+    lifespan: 7,
+    type: 'classic',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/1024px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg'
     },
     {name:'Titian',
-    lifespan: 20,
-    type: 'classical',
+    lifespan: 9,
+    type: 'classic',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Titian_Bacchus_and_Ariadne.jpg/1920px-Titian_Bacchus_and_Ariadne.jpg'
     },
     {name: 'Boticelli',
-    lifespan: 18,
-    type: 'classical',
+    lifespan: 7,
+    type: 'classic',
     avatar: 'https://news.artnet.com/app/news-upload/2017/01/1024px-Sandro_Botticelli_-_Madonna_del_Magnificat_-_Google_Art_Project.jpg'
     }
 ]
-// declare vars for player object elements in player class arrays
-//player array element vars
-const picasso = playerArray[0];
-const cezanne =  playerArray[1];
-const gauguin = playerArray[2];
-const munch =  playerArray[3];
-const vanGogh =  playerArray[4];
-const raffaello = playerArray[5];
-const michelangelo =  playerArray[6];
-const daVinci = playerArray[7];
-const titian =  playerArray[8];
-const boticelli =  playerArray[9];
+
+const modernArtPlayerArray = playerArray.filter((player) => player.type === 'modern');
+const classicArtPlayerArray = playerArray.filter((player) => player.type === 'classic');
+
+modernArtPlayerArray.map((player, index) => {
+    $('#modernArtPlayers').append(`<option value='${index}'>${player.name}</option>`);
+});
+classicArtPlayerArray.map((player, index) => {
+    $('#classicArtPlayers').append(`<option value='${index}'>${player.name}</option>`);
+});
+
 
 // ENTRY
 //choose and declare Players
-const player1 = gauguin;
-console.log(player1);
-const player2 = daVinci;
-console.log(player2);
-// make player data accessible throughout script
-window.modernArt = new ModernArtPlayer(player1.name, player1.lifespan);
-window.classicArt = new ClassicArtPlayer(player2.name, player2.lifespan);
 
+function setPlayer(artistType, player){
+    $(`#${artistType}ArtAvatar`).attr("src", `${player.avatar}`);
+    $(`#${artistType}ArtVitals`).append(`<p> Life: ${player.lifespan} years</p>`); 
+    // make player data accessible throughout script - have to fix below once have dropdown, can't use 'player'
+    if(artistType==='modern'){
+        window.modernArt = new ModernArtPlayer(player.name, player.lifespan);
+    } else {
+        window.classicArt = new ClassicArtPlayer(player.name, player.lifespan);
+    }
+};
 //choose starting player in reverse
 const secondPlayer = Math.round(Math.random() + 1);
 $("#call-api-btn" + secondPlayer).attr('disabled', 'disabled');
-// Display avatar, name and dynamic vitals (based on changing hitpoints, initially defined as lifespan in object)
-$("#avatarModernArt").attr("src", `${player1.avatar}`);
-$('#playerModernArtName').append(`<h2 class="playerName">${player1.name}</h2>`);
-$('#modernArtVitals').append(`<p> Life: ${player1.lifespan} years</p>`); 
-// $('#playerModernArtName').append(`<h3>${playerModernArtArray[3].lifespan}</h3>`);
-$("#avatarClassicArt").attr("src", `${player2.avatar}`);
-$('#playerClassicArtName').append(`<h2 class="playerName">${player2.name}</h2>`);
-$('#classicArtVitals').append(`<p> Life: ${player2.lifespan} years</p>`);
-// $('#playerClassicArtName').append(`<h3>${playerClassicArtArray[1].lifespan}</h3>`);
+
+// select players from drop down menu
+$('#modernArtPlayers').on("change", (event) => {
+    console.log(event.target.value);
+    setPlayer('modern', modernArtPlayerArray[event.target.value]);
+});
+
+$('#classicArtPlayers').on("change", (event) => {
+    setPlayer('classic', classicArtPlayerArray[event.target.value]);
+});
 
 // Game play
 // Modern Art attacks - Button 1
@@ -146,7 +150,7 @@ $("#call-api-btn1").on("click", () => {
     const classicArt = window.classicArt;
     // invoke Modern Art attack as result of button1 click event
     modernArt.attackEnemy(classicArt);
-    $('#classicArtVitals').html(`<p> Life: ${classicArt.hitpoints} years</p>`);
+    $('#classicArtVitals').html(`<p> Life: ${classicArt.hitpoints<1?0:classicArt.hitpoints} years</p>`);
     // modernArt.updateLifespan(player2);
     // ... resulting gameplay - text and image display under various alive/dead conditions....
     if(!modernArt.dead && !classicArt.dead){
@@ -241,7 +245,7 @@ $("#call-api-btn2").on("click", () => {
 
     // classic art attacks
     classicArt.attackEnemy(modernArt);
-    $('#modernArtVitals').html(`<p> Life: ${modernArt.hitpoints} years</p>`);
+    $('#modernArtVitals').html(`<p> Life: ${modernArt.hitpoints<1?0:modernArt.hitpoints} years</p>`);
     console.log(modernArt);
     // gameplay - display text, images under various alive/dead conditions
     if(!modernArt.dead && !classicArt.dead){

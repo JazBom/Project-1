@@ -25,6 +25,7 @@ p {
 }
 .container {
     width: 50%;
+    padding-top: 2rem;
     padding-bottom: 1rem;
 }
 .avatar {
