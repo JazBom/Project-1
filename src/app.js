@@ -170,38 +170,31 @@ $("#call-api-btn1").on("click", () => {
             `takes abuse from no-one but Kings and popes...`
         ];
         const random1 = Math.floor(Math.random() * quoteModernArt.length);
-        $("#divArtBattle").prepend(`<h1 id="modernArtQuote">${quoteModernArt[random1]}</h1>`);
-        $("#modernArtQuote").append(`<h2>${modernArt.name} ${sentence1A[random1]}</h2>`); // replaces this with random sentence - build random sentence generator
-        $("#modernArtQuote").append(`<p>${classicArt.name} loses ${modernArt.attackpoint} year${modernArt.attackpoint===1?'':'s'} of his life...  Only ${classicArt.hitpoints} good painting years left.</p>`);
-        $("#modernArtQuote").append(`<p>But ${classicArt.name} ${sentence1B[random1]}</p>`);
+        $("#artQuote").html(`<h1>${quoteModernArt[random1]}</h1><h2>${modernArt.name} ${sentence1A[random1]}</h2>`);
+        $("#gamePlayText").html(`<p class="gamePlayP">${classicArt.name} loses ${modernArt.attackpoint} year${modernArt.attackpoint===1?'':'s'} of his life...  Only ${classicArt.hitpoints} good painting years left.</p><p class="gamePlayP">But ${classicArt.name} ${sentence1B[random1]}</p>`);
         console.log(classicArt);
-    } else if(modernArt.dead && !classicArt.dead) {
-        // Modern art dead
-        $("#divArtBattle").prepend(`<h1 id="classicArtWinner">Classical Art wins!!!</h1>`);
-        $("#classicArtWinner").prepend(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left.. </p>`);
-        $("#classicArtWinner").prepend(`<p>${modernArt.name} has no years left..</p>`); 
-        $("#classicArtWinner").append(`<h1>Game over</h1>`);
-        $('#call-api-btn2').attr('disabled', 'disabled');
-        $('#call-api-btn1').attr('disabled', 'disabled');
-    } else if(classicArt.dead && !modernArt.dead){
-        //Classic art dead
-        $("#divArtBattle").prepend(`<h1 id="modernArtWinner">Modern Art wins!!!</h1>`);
-        $("#modernArtWinner").prepend(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left.. </p>`);
-        $("#modernArtWinner").prepend(`<p>${classicArt.name} has no years left..</p>`); 
-        $("#modernArtWinner").append(`<h1 >Game over</h1>`);
-        $('#call-api-btn2').attr('disabled', 'disabled');
-        $('#call-api-btn1').attr('disabled', 'disabled');
-    } else if(classicArt.dead && modernArt.dead){
-        // both art dead
-        $("#divArtBattle").append(`<h1 id="gameOver">Game over. No winners...art is dead....</h1>`);
-        $("#gameOver").prepend(`<p>${modernArt.name} has no years left..</p>`); 
-        $("#gameOver").prepend(`<p> ... ${classicArt.name} also has no years left.. </p>`);
-        $('#call-api-btn2').attr('disabled', 'disabled');
-        $('#call-api-btn1').attr('disabled', 'disabled');
-    } else {
-        // else - must be error
-        $("#divArtBattle").prepend(`<h2>Oops...look like there's paint on our face.</h2>`);
-    }
+    } else if (!modernArt.dead && classicArt.dead){
+        // Classic art dead
+         $("#artQuote").html(`<h1 id="modernArtWinner">MODERN Art wins!!!</h1>`);
+         $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p>`);
+         $('#call-api-btn2').attr('disabled', 'disabled');
+         $('#call-api-btn1').attr('disabled', 'disabled');
+     } else if(!classicArt.dead && modernArt.dead){
+         // Modern art dead
+         $("#artQuote").html(`<h1 id="classicArtWinner">CLASSICAL Art wins!!!</h1>`);
+         $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p>`);
+         $('#call-api-btn2').attr('disabled', 'disabled');
+         $('#call-api-btn1').attr('disabled', 'disabled');
+     } else if(classicArt.dead && modernArt.dead){
+         // both art dead
+         $("#artQuote").html(`<h1 id="gameOver">No winners...art is dead....</h1>`);
+         $("#gamePlayText").html(`<p>${modernArt.name} has no years left..</p><p>...${classicArt.name} also has no years left... </p>`); 
+         $('#call-api-btn2').attr('disabled', 'disabled');
+         $('#call-api-btn1').attr('disabled', 'disabled');
+     } else {
+         // else must be error
+         $("#artQuote").html(`<h2>Oops...look like there's paint on our face.</h2>`);
+     };
     const imgData1 = $.get(
     `https://picsum.photos/v2/list`, (data1) => { //  image from a moden art collection appearing
         // Returning all data
@@ -251,7 +244,7 @@ $("#call-api-btn2").on("click", () => {
     // gameplay - display text, images under various alive/dead conditions
     if(!modernArt.dead && !classicArt.dead){
         // if both art alive 
-        const quoteModernArt = [
+        const quoteClassicArt = [
             `"Eat my slow, painful lead poisoning for the sake of your art!!!"`, 
             `"Paint or paint not, there is no try ..."`,
             `"Draw a circle...then draw the rest of the f$%*ing head!"`
@@ -266,38 +259,33 @@ $("#call-api-btn2").on("click", () => {
             `eats pain(t) for breakfast and is coming for you...`,
             `is still in the studio... and the student will soon become the master.`
         ];
-        const random2 = Math.floor(Math.random() * quoteModernArt.length);
-        console.log(quoteModernArt[random2]);
-        $("#divArtBattle").prepend(`<h1 id="classicArtQuote">${quoteModernArt[random2]}</h1>`);
-        $("#classicArtQuote").append(`<h2>${classicArt.name} ${sentence2A[random2]}.</h2>`);
-        $("#classicArtQuote").append(`<p>${modernArt.name} loses ${classicArt.attackpoint} year${classicArt.attackpoint===1?'':'s'} of his life...  Only ${modernArt.hitpoints} good painting years left.</p>`);  // fix plural
-        $("#classicArtQuote").append(`<p>But ${modernArt.name} ${sentence2B[random2]}.</p>`);
+        const random2 = Math.floor(Math.random() * quoteClassicArt.length);
+        console.log(quoteClassicArt[random2]);
+
+        $("#artQuote").html(`<h1>${quoteClassicArt[random2]}</h1><h2>${classicArt.name} ${sentence2A[random2]}</h2>`);
+        $("#gamePlayText").html(`<p class="gamePlayP">${modernArt.name} loses ${classicArt.attackpoint} year${classicArt.attackpoint===1?'':'s'} of his life...  Only ${modernArt.hitpoints} good painting years left.</p><p>But ${modernArt.name} ${sentence2B[random2]}.</p>`);
+        console.log(modernArt);
     } else if (!modernArt.dead && classicArt.dead){
        // Classic art dead
-        $("#divArtBattle").prepend(`<h1 id="modernArtWinner">Modern Art wins!!!</h1>`);
-        $("#modernArtWinner").prepend(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p>`);
-        $("#modernArtWinner").prepend(`<p>${classicArt.name} has no years left..</p>`); 
-        $("#modernArtWinner").append(`<h2>Game over</h2>`);
+        $("#artQuote").html(`<h1 id="modernArtWinner">MODERN Art wins!!!</h1>`);
+        $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p>`);
         $('#call-api-btn2').attr('disabled', 'disabled');
         $('#call-api-btn1').attr('disabled', 'disabled');
     } else if(!classicArt.dead && modernArt.dead){
         // Modern art dead
-        $("#divArtBattle").prepend(`<h1 id="classicArtWinner">Classical Art wins!!!</h1>`);
-        $("#classicArtWinner").prepend(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left..</p>`);
-        $("#classicArtWinner").prepend(`<p>${modernArt.name} has no years left..</p>`); 
-        $("#classicArtWinner").append(`<h1>Game over</h1>`);
+        $("#artQuote").html(`<h1 id="classicArtWinner">CLASSICAL Art wins!!!</h1>`);
+        $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p>`);
         $('#call-api-btn2').attr('disabled', 'disabled');
         $('#call-api-btn1').attr('disabled', 'disabled');
     } else if(classicArt.dead && modernArt.dead){
         // both art dead
-        $("#divArtBattle").prepend(`<h1 id="gameOver">Game over. No winners...art is dead....</h1>`);
-        $("#gameOver").append(`<p>${modernArt.name} has no years left..</p>`); 
-        $("#gameOver").append(`<p>...${classicArt.name} also has no years left... </p>`);
+        $("#artQuote").html(`<h1 id="gameOver">No winners...art is dead....</h1>`);
+        $("#gamePlayText").html(`<p>${modernArt.name} has no years left..</p><p>...${classicArt.name} also has no years left... </p>`); 
         $('#call-api-btn2').attr('disabled', 'disabled');
         $('#call-api-btn1').attr('disabled', 'disabled');
     } else {
         // else must be error
-        $("#divArtBattle").prepend(`<h2>Oops...look like there's paint on our face.</h2>`);
+        $("#artQuote").html(`<h2>Oops...look like there's paint on our face.</h2>`);
     };
 
     if(!classicArt.dead && !modernArt.dead){
@@ -314,24 +302,23 @@ $("#call-api-btn2").on("click", () => {
                     const height = 400;
                     const author2 = dataClassicArt.author;
                     const url2 = `https://picsum.photos/id/${id2}/${width}/${height}`;
-            
                     console.log(id2);
                     console.log(author2);
                     console.log(url2);
- debugger;
                     // Creating elements to add those responses
-                    $('#mainCanvas').attr("src", url2);
+                    $('#mainCanvas').attr('src', url2);
+                    console.log('url2:', `${url2}`);
                     // const image2 = `<p id="imageP2"><img class="image-cell-2" src="${url2}"></img></p>`;
                     // const authorName2 = `<p>${author2}</p>`; 
                     // const imageUrl = `<a id="3" href="${url}" target="_blank">Go to image</a>`;
-                    
                     //Appending the elements on the DOM
-
-
-                    // $("#divArtBattle").prepend(image2);
+                    $("#divArtBattle").html(`<p>${author2} </p><a id="3" href="${url}" target="_blank"> (Click for image reference)</a>`);
                     // $("#imageP2").append(authorName2);
                     // $("#col-2").append(imageUrl);
                 })
     }
 }
 );
+
+
+
