@@ -19,8 +19,7 @@ class Player {
     // calculate hit taken
     takeHit(damage){
         this.hitpoints = this.hitpoints - damage;
-        this.dead = this.hitpoints <= 0;
-        
+        this.dead = this.hitpoints <= 0;   
     }
 };
 // players
@@ -220,13 +219,15 @@ $("#call-api-btn1").on("click", () => {
             console.log(url1);
     
             // Creating elements to add those responses
-            const image1 = `<p id="imageP1"><img class="image-cell-2" src="${url1}"></img></p>`;
-            const authorName1 = `<p>${author1}</p>`; 
+            // const image1 = `<p id="imageP1"><img class="image-cell-2" src="${url1}"></img></p>`;
+            // const authorName1 = `<p>${author1}</p>`; 
             // const imageUrl = `<a id="3" href="${url}" target="_blank">Go to image</a>`;
             
             //Appending the elements on the DOM
-            $("#divArtBattle").prepend(image1);
-            $("#imageP1").append(authorName1);
+            $('#mainCanvas').attr('src', url1);
+            console.log('url1:', `${url1}`);
+            // $("#divArtBattle").prepend(image1);
+            // $("#imageP1").append(authorName1);
             // $("#col-2").append(imageUrl);
         }
     );
@@ -269,7 +270,7 @@ $("#call-api-btn2").on("click", () => {
         console.log(quoteModernArt[random2]);
         $("#divArtBattle").prepend(`<h1 id="classicArtQuote">${quoteModernArt[random2]}</h1>`);
         $("#classicArtQuote").append(`<h2>${classicArt.name} ${sentence2A[random2]}.</h2>`);
-        $("#classicArtQuote").append(`<p>${modernArt.name} loses ${classicArt.attackpoint} year${classicArt.attackpoint===1?'':'s'}  of his life...  Only ${modernArt.hitpoints} good painting years left.</p>`);  // fix plural
+        $("#classicArtQuote").append(`<p>${modernArt.name} loses ${classicArt.attackpoint} year${classicArt.attackpoint===1?'':'s'} of his life...  Only ${modernArt.hitpoints} good painting years left.</p>`);  // fix plural
         $("#classicArtQuote").append(`<p>But ${modernArt.name} ${sentence2B[random2]}.</p>`);
     } else if (!modernArt.dead && classicArt.dead){
        // Classic art dead
@@ -317,16 +318,18 @@ $("#call-api-btn2").on("click", () => {
                     console.log(id2);
                     console.log(author2);
                     console.log(url2);
-            
+ debugger;
                     // Creating elements to add those responses
-                    
-                    const image2 = `<p id="imageP2"><img class="image-cell-2" src="${url2}"></img></p>`;
-                    const authorName2 = `<p>${author2}</p>`; 
+                    $('#mainCanvas').attr("src", url2);
+                    // const image2 = `<p id="imageP2"><img class="image-cell-2" src="${url2}"></img></p>`;
+                    // const authorName2 = `<p>${author2}</p>`; 
                     // const imageUrl = `<a id="3" href="${url}" target="_blank">Go to image</a>`;
                     
                     //Appending the elements on the DOM
-                    $("#divArtBattle").prepend(image2);
-                    $("#imageP2").append(authorName2);
+
+
+                    // $("#divArtBattle").prepend(image2);
+                    // $("#imageP2").append(authorName2);
                     // $("#col-2").append(imageUrl);
                 })
     }

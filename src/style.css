@@ -19,7 +19,15 @@ p {
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
 }
-
+.imageWrapper {
+    background-color: white;
+    height: 500px;
+    width: 500px;
+}
+.mainCanvas {
+    height: auto;
+    width: 100%;
+}
 .form {
     display: inline-block;
     text-align: center;
@@ -50,10 +58,13 @@ p {
 .cell-3 {
     background-color: cadetblue;
 }
-.image-cell-2 {
-    border-radius: 2.5%;
+.cell-2 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* border-radius: 2.5%;
     outline-width: 1rem;
-    outline-color: black;
+    outline-color: black; */
 }
 #header {
     color: rgba(7, 7, 7, 0.4);
