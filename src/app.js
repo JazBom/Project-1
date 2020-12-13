@@ -109,33 +109,21 @@ classicArtPlayerArray.map((player, index) => {
 });
 
 // Artwork image data
-var artistPaintings;
+let artistPaintings;
 const imgData = $.get(
     `https://179iper8g8.execute-api.ap-southeast-2.amazonaws.com/prod/artist-artworks`, (data) => {
         // Returning all data
         console.log(data);
         // Extract info
-        // have to put in an if() statement for not returning results where 'undefined' (e.g. no url)
-            artistPaintings = data;
-            // const picassoImageURL = data.picasso[i].url;
-            // const cezanneImageURL = data.cezanne[i].url;
-            // const gauguinImageURL = data.gauguin[i].url;
-            // const munchImageURL = data.munch[i].url;
-            // const vangoghImageURL = data.vangogh[i].url;
-            // const raphaelImageURL = data.raphael[i].url;
-            // const michelangeloImageURL = data.michelangelo[i].url;
-            // const davinciloImageURL = data.davinci[i].url;
-            // const titianImageURL = data.titian[i].url;
-            // const boticelliImageURL = data.boticelli[i].url;
+        artistPaintings = data;
         })
 
 // ENTRY
 //choose and declare Players
-
 function setPlayer(artistType, player){
     $(`#${artistType}ArtAvatar`).attr("src", `${player.avatar}`);
     $(`#${artistType}ArtVitals`).html(`<p> Life: ${player.lifespan} years</p>`); 
-    // make player data accessible throughout script - have to fix below once have dropdown, can't use 'player'
+    // make player data accessible throughout script 
     if(artistType==='modern'){
         window.modernArt = new ModernArtPlayer(player.name, player.lifespan);
     } else {
@@ -150,7 +138,6 @@ $("#call-api-btn" + secondPlayer).attr('disabled', 'disabled');
 $('#modernArtPlayers').on("change", (event) => {
     setPlayer('modern', modernArtPlayerArray[event.target.value]);
 });
-
 $('#classicArtPlayers').on("change", (event) => {
     setPlayer('classic', classicArtPlayerArray[event.target.value]);
     // const classicArtImageURL = `${[index].name.toLowerCase}ImageURL`;
@@ -159,8 +146,6 @@ $('#classicArtPlayers').on("change", (event) => {
 // Game play
 // Modern Art attacks - Button 1
 $("#call-api-btn1").on("click", () => { 
-    // console log attack
-    console.log("Call api button 1 was clicked!");
     //button disabled if clicked so it is other player's turn next
     $('#call-api-btn1').attr('disabled', 'disabled');
     $('#call-api-btn2').removeAttr('disabled');
@@ -169,15 +154,14 @@ $("#call-api-btn1").on("click", () => {
     const classicArt = window.classicArt;
     // invoke Modern Art attack as result of button1 click event
     modernArt.attackEnemy(classicArt);
+    //updateLifespan of enemy classicart (player2)
     $('#classicArtVitals').html(`<p> Life: ${classicArt.hitpoints<1?0:classicArt.hitpoints} years</p>`);
-    // modernArt.updateLifespan(player2);
-    // ... resulting gameplay - text and image display under various alive/dead conditions....
+    //resulting text and image display under various attacker/ enemy alive/dead conditions....
     if(!modernArt.dead && !classicArt.dead){
-    // if both still alive -> gameplay 
+    // if both still alive -> 
     // paint something
     const i = Math.floor(Math.random() * artistPaintings[modernArt.name.toLowerCase()].length); 
     const modernArtImageURL = artistPaintings[modernArt.name.toLowerCase()][i].url;
-    console.log('modernArtImageURL:', `${modernArtImageURL}`);
     $('#mainCanvas').attr('src', modernArtImageURL);
     // say stuff
         const quoteModernArt = [
@@ -190,31 +174,29 @@ $("#call-api-btn1").on("click", () => {
             `sells a finger painting for $1.5 million.`,
             `uses colour direct from the tube... and it looks amazing!!`
         ];
-        const sentence1B = [
-            `is still drawing those perfect heads...`, 
-            `is respected by other artists, and will not retire!!`,
-            `takes abuse only from Kings or popes...`
-        ];
         const random1 = Math.floor(Math.random() * quoteModernArt.length);
         $("#artQuote").html(`<h1>${quoteModernArt[random1]}</h1><h2>${modernArt.name} ${sentence1A[random1]}</h2>`);
-        $("#gamePlayText").html(`<p class="gamePlayP">${classicArt.name} loses ${modernArt.attackpoint} year${modernArt.attackpoint===1?'':'s'} of his life...  Only ${classicArt.hitpoints} good painting year${classicArt.hitpoints===1?'':'s'} left.</p><p class="gamePlayP">...but ${classicArt.name} ${sentence1B[random1]}</p>`);
+        $("#gamePlayText").html(`<p class="gamePlayP">${classicArt.name} loses ${modernArt.attackpoint} year${modernArt.attackpoint===1?'':'s'} of his life...  Only ${classicArt.hitpoints} good painting year${classicArt.hitpoints===1?'':'s'} left.</p>`);
         console.log(classicArt);
         } else if(!modernArt.dead && classicArt.dead){
         // Modern art wins - Classic art dead
-            $("#artQuote").html(`<h1 id="modernArtWinner">MODERN Art wins!!!</h1><p>Game over for ${classicArt.name} and linear perspective</p>`);
-            $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p>`);
+            $("#artQuote").html(`<h1 id="modernArtWinner">MODERN Art wins!!!</h1>`);
+            $('#mainCanvas').attr('src', 'https://static01.nyt.com/images/2012/08/24/world/europe/24christ-span/24christ-span-superJumbo.jpg?quality=90&auto=webp');
+            $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p><h2>Game over for ${classicArt.name} and linear perspective</h2>`);
             $('#call-api-btn2').attr('disabled', 'disabled');
             $('#call-api-btn1').attr('disabled', 'disabled');
         } else if(!classicArt.dead && modernArt.dead){
          // Classic art wins - Modern art dead
-            $("#artQuote").html(`<h1 id="classicArtWinner">CLASSICAL Art wins!!!</h1><p>Game over for ${modernArt.name} and the 20th century</p>`);
-            $("#gamePlayText").html(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left..</p><p>${modernArt.name} has no years left..</p>`);
+            $("#artQuote").html(`<h1 id="classicArtWinner">CLASSICAL Art wins!!!</h1>`);
+            $('#mainCanvas').attr('src', 'https://piximus.net/media2/55709/funny-classical-art-memes-17.jpg');
+            $("#gamePlayText").html(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left..</p><p>${modernArt.name} has no years left..</p><h2>Game over for ${modernArt.name} and the 20th century</h2>`);
             $('#call-api-btn2').attr('disabled', 'disabled');
             $('#call-api-btn1').attr('disabled', 'disabled');
         } else if(classicArt.dead && modernArt.dead){
          // both art dead
             $("#artQuote").html(`<h1 id="gameOver">No winners...art is dead....</h1>`);
             $("#gamePlayText").html(`<p>${modernArt.name} has no years left..</p><p>...${classicArt.name} also has no years left... </p>`); 
+            $('#mainCanvas').attr('src', 'https://piximus.net/media2/55709/funny-classical-art-memes-17.jpg');
             $('#call-api-btn2').attr('disabled', 'disabled');
             $('#call-api-btn1').attr('disabled', 'disabled');
         } else {
@@ -238,14 +220,13 @@ $("#call-api-btn2").on("click", () => {
     classicArt.attackEnemy(modernArt);
     $('#modernArtVitals').html(`<p> Life: ${modernArt.hitpoints<1?0:modernArt.hitpoints} years</p>`);
     console.log(modernArt);
-    // gameplay - display text, images under various alive/dead conditions
+    // display text, images under various alive/dead conditions
     if(!modernArt.dead && !classicArt.dead){
-    // if both still alive, gameplay
-    //paint something
-    const i = Math.floor(Math.random() * artistPaintings[classicArt.name.toLowerCase()].length); 
-    const classicArtImageURL = artistPaintings[classicArt.name.toLowerCase()][i].url;
-    $('#mainCanvas').attr('src', classicArtImageURL);
-    console.log('classicArtImageURL:', `${classicArtImageURL}`);
+    // if both still alive -->
+        //paint something
+        const i = Math.floor(Math.random() * artistPaintings[classicArt.name.toLowerCase()].length); 
+        const classicArtImageURL = artistPaintings[classicArt.name.toLowerCase()][i].url;
+        $('#mainCanvas').attr('src', classicArtImageURL);
         // say something
         const quoteClassicArt = [
             `"Eat my lead poisoning for the sake of your art!!!"`, 
@@ -257,33 +238,31 @@ $("#call-api-btn2").on("click", () => {
             `rejects ${modernArt.name}'s work from the Grand Salon.`,
             `teaches this young upstart a lesson.`
         ];
-        const sentence2B = [
-            `is still young and beautiful... watch out.`, 
-            `eats pain(t) for breakfast and is coming for you...`,
-            `is still in the studio... the student will become the master.`
-        ];
         const random2 = Math.floor(Math.random() * quoteClassicArt.length);
         console.log(quoteClassicArt[random2]);
 
         $("#artQuote").html(`<h1>${quoteClassicArt[random2]}</h1><h2>${classicArt.name} ${sentence2A[random2]}</h2>`);
-        $("#gamePlayText").html(`<p class="gamePlayP">${modernArt.name} loses ${classicArt.attackpoint} year${classicArt.attackpoint===1?'':'s'} of his life...  Only ${modernArt.hitpoints} good painting year${modernArt.hitpoints===1?'':'s'} left.</p><p>But ${modernArt.name} ${sentence2B[random2]}.</p>`);
+        $("#gamePlayText").html(`<p class="gamePlayP">${modernArt.name} loses ${classicArt.attackpoint} year${classicArt.attackpoint===1?'':'s'} of his life. Currently ${modernArt.hitpoints} good painting year${modernArt.hitpoints===1?'':'s'} left.</p>`);
         console.log(modernArt);
     } else if (!modernArt.dead && classicArt.dead){
        // Classic art dead
-        $("#artQuote").html(`<h1 id="modernArtWinner">MODERN Art wins!!!</h1><p>Game over for ${classicArt.name} and linear perspective</p>`);
-        $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p>`);
+        $("#artQuote").html(`<h1 id="modernArtWinner">MODERN Art wins!!!</h1>`);
+        $('#mainCanvas').attr('src', 'https://static01.nyt.com/images/2012/08/24/world/europe/24christ-span/24christ-span-superJumbo.jpg?quality=90&auto=webp');
+        $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p><h2>Game over for ${classicArt.name} and linear perspective</h2>`);
         $('#call-api-btn2').attr('disabled', 'disabled');
         $('#call-api-btn1').attr('disabled', 'disabled');
     } else if(!classicArt.dead && modernArt.dead){
         // Modern art dead
-        $("#artQuote").html(`<h1 id="classicArtWinner">CLASSICAL Art wins!!!</h1><p>Game over for ${modernArt.name} and the 20th century</p>`);
-        $("#gamePlayText").html(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left..</p><p>${modernArt.name} has no years left..</p>`);
+        $("#artQuote").html(`<h1 id="classicArtWinner">CLASSICAL Art wins!!!</h1>`);
+        $('#mainCanvas').attr('src', 'https://piximus.net/media2/55709/funny-classical-art-memes-17.jpg');
+        $("#gamePlayText").html(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left..</p><p>${modernArt.name} has no years left..</p><h2>Game over for ${modernArt.name} and the 20th century</h2>`);
         $('#call-api-btn2').attr('disabled', 'disabled');
         $('#call-api-btn1').attr('disabled', 'disabled');
     } else if(classicArt.dead && modernArt.dead){
         // both art dead
         $("#artQuote").html(`<h1 id="gameOver">No winners...art is dead....</h1>`);
         $("#gamePlayText").html(`<p>${modernArt.name} has no years left..</p><p>...${classicArt.name} also has no years left... </p>`); 
+        $('#mainCanvas').attr('src', 'https://piximus.net/media2/55709/funny-classical-art-memes-17.jpg');
         $('#call-api-btn2').attr('disabled', 'disabled');
         $('#call-api-btn1').attr('disabled', 'disabled');
     } else {

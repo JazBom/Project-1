@@ -78,13 +78,13 @@ p.gamePlayP {
     color: rgba(7, 7, 7, 0.3);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1.1rem;
-    padding-top: .1rem;
-    padding-bottom: .1rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0;
     margin: 0;
     text-align: center;
 }
 #grid {
-    padding-top: 5px;
+    padding-top: 15px;
     height: 90vh;
     margin: 1rem;
     display: grid;
@@ -100,7 +100,7 @@ p.gamePlayP {
 }
 
 #gamePlayText {
-    padding-top: 0.5rem;
+    padding-top: 0.1rem;
 }
 
 
