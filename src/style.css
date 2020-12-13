@@ -52,6 +52,7 @@ p.gamePlayP {
     font-size: 1rem;
     text-align: center;
     padding: 1rem;
+    border-radius: 16%;
 }
 .cell-1 {
     background-color: cornflowerblue;
@@ -67,7 +68,7 @@ p.gamePlayP {
 #header {
     color: rgba(7, 7, 7, 0.4);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 10rem;
+    font-size: 9rem;
     scroll-margin-top: 0;
     padding-top: 0;
     padding-bottom: 0;
@@ -75,18 +76,9 @@ p.gamePlayP {
 #subHeader {   
     color: rgba(7, 7, 7, 0.3);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     padding-top: .1rem;
     padding-bottom: 1rem;
-    text-align: center;
-}
-#chooseStartingPlayer {
-    color: rgba(207, 24, 24, 0.596);
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 3rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    display: inline-block;
     text-align: center;
 }
 #grid {

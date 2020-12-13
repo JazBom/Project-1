@@ -49,24 +49,24 @@ let playerArray = [
     {name: 'Picasso',
     lifespan: 9,
     type: 'modern',
-    avatar: 'https://www.tate.org.uk/art/images/work/T/T05/T05010_10.jpg'
+    avatar: 'https://www.pablopicasso.org/images/paintings/self-portrait-1907.jpg'
     },
     {name:'Cezanne',
     lifespan: 7,
     type: 'modern',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Paul_C%C3%A9zanne%2C_1888-90%2C_Madame_C%C3%A9zanne_%28Hortense_Fiquet%2C_1850%E2%80%931922%29_in_a_Red_Dress%2C_oil_on_canvas%2C_116.5_x_89.5_cm%2C_The_Metropolitan_Museum_of_Art%2C_New_York.jpg/1024px-thumbnail.jpg'
+    avatar: 'https://media.newyorker.com/photos/5abd7107e4b526446411b381/master/w_2560%2Cc_limit/180409_r31842.jpg'
     },
     {name:'Gauguin',
     lifespan: 5,
     type: 'modern',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Paul_Gauguin_040.jpg/1024px-Paul_Gauguin_040.jpg'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/6/60/Self-Portrait_by_Paul_Gauguin%2C_1885.jpg'
     },
     {name:'Munch',
     lifespan: 8,
     type: 'modern',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/1280px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Edvard_Munch_-_Self-Portrait_%281895%29_G0192-59_-_Google_Art_Project.jpg/800px-Edvard_Munch_-_Self-Portrait_%281895%29_G0192-59_-_Google_Art_Project.jpg'
     },
-    {name:'Van Gogh',
+    {name:'vanGogh',
     lifespan: 4,
     type: 'modern',
     avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg/1024px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg'
@@ -74,27 +74,27 @@ let playerArray = [
     {name:'Raffaello',
     lifespan: 4,
     type: 'classic',
-    avatar: 'https://images.uffizi.it/production/attachments/1506337803506060-raffaello-madonna-cardellino-principale.jpg?ixlib=rails-2.1.3&w=1200&h=800&fit=clip&crop=center&fm=gjpg&auto=compress'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Raffaello_Sanzio.jpg/1024px-Raffaello_Sanzio.jpg'
     },
     {name:'Michelangelo',
     lifespan: 9,
     type: 'classic',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Tondo_Doni%2C_por_Miguel_%C3%81ngel.jpg/1280px-Tondo_Doni%2C_por_Miguel_%C3%81ngel.jpg'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg/440px-Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg'
     },
-    {name:'Da Vinci',
+    {name:'daVinci',
     lifespan: 7,
     type: 'classic',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/1024px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Leonardo_self.jpg'
     },
     {name:'Titian',
     lifespan: 9,
     type: 'classic',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Titian_Bacchus_and_Ariadne.jpg/1920px-Titian_Bacchus_and_Ariadne.jpg'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Self-portrait_of_Titian.jpg/1024px-Self-portrait_of_Titian.jpg'
     },
     {name: 'Boticelli',
     lifespan: 7,
     type: 'classic',
-    avatar: 'https://news.artnet.com/app/news-upload/2017/01/1024px-Sandro_Botticelli_-_Madonna_del_Magnificat_-_Google_Art_Project.jpg'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Sandro_Botticelli_083.jpg/1280px-Sandro_Botticelli_083.jpg'
     }
 ]
 
@@ -108,13 +108,33 @@ classicArtPlayerArray.map((player, index) => {
     $('#classicArtPlayers').append(`<option value='${index}'>${player.name}</option>`);
 });
 
+// Artwork image data
+var artistPaintings;
+const imgData = $.get(
+    `https://179iper8g8.execute-api.ap-southeast-2.amazonaws.com/prod/artist-artworks`, (data) => {
+        // Returning all data
+        console.log(data);
+        // Extract info
+        // have to put in an if() statement for not returning results where 'undefined' (e.g. no url)
+            artistPaintings = data;
+            // const picassoImageURL = data.picasso[i].url;
+            // const cezanneImageURL = data.cezanne[i].url;
+            // const gauguinImageURL = data.gauguin[i].url;
+            // const munchImageURL = data.munch[i].url;
+            // const vangoghImageURL = data.vangogh[i].url;
+            // const raphaelImageURL = data.raphael[i].url;
+            // const michelangeloImageURL = data.michelangelo[i].url;
+            // const davinciloImageURL = data.davinci[i].url;
+            // const titianImageURL = data.titian[i].url;
+            // const boticelliImageURL = data.boticelli[i].url;
+        })
 
 // ENTRY
 //choose and declare Players
 
 function setPlayer(artistType, player){
     $(`#${artistType}ArtAvatar`).attr("src", `${player.avatar}`);
-    $(`#${artistType}ArtVitals`).append(`<p> Life: ${player.lifespan} years</p>`); 
+    $(`#${artistType}ArtVitals`).html(`<p> Life: ${player.lifespan} years</p>`); 
     // make player data accessible throughout script - have to fix below once have dropdown, can't use 'player'
     if(artistType==='modern'){
         window.modernArt = new ModernArtPlayer(player.name, player.lifespan);
@@ -128,12 +148,12 @@ $("#call-api-btn" + secondPlayer).attr('disabled', 'disabled');
 
 // select players from drop down menu
 $('#modernArtPlayers').on("change", (event) => {
-    console.log(event.target.value);
     setPlayer('modern', modernArtPlayerArray[event.target.value]);
 });
 
 $('#classicArtPlayers').on("change", (event) => {
     setPlayer('classic', classicArtPlayerArray[event.target.value]);
+    // const classicArtImageURL = `${[index].name.toLowerCase}ImageURL`;
 });
 
 // Game play
@@ -153,7 +173,13 @@ $("#call-api-btn1").on("click", () => {
     // modernArt.updateLifespan(player2);
     // ... resulting gameplay - text and image display under various alive/dead conditions....
     if(!modernArt.dead && !classicArt.dead){
-        // if both still alive -> gameplay 
+    // if both still alive -> gameplay 
+    // paint something
+    const i = Math.floor(Math.random() * artistPaintings[modernArt.name.toLowerCase()].length); 
+    const modernArtImageURL = artistPaintings[modernArt.name.toLowerCase()][i].url;
+    console.log('modernArtImageURL:', `${modernArtImageURL}`);
+    $('#mainCanvas').attr('src', modernArtImageURL);
+    // say stuff
         const quoteModernArt = [
             `"Inhale colour!!! Die young!!!"`, 
             `"If no mistake you have made, losing you are..."`,
@@ -165,66 +191,38 @@ $("#call-api-btn1").on("click", () => {
             `uses colour direct from the tube... and it looks amazing!!`
         ];
         const sentence1B = [
-            `is still drawing those perfect heads.`, 
+            `is still drawing those perfect heads...`, 
             `is respected by other artists, and will not retire!!`,
-            `takes abuse from no-one but Kings and popes...`
+            `takes abuse only from Kings or popes...`
         ];
         const random1 = Math.floor(Math.random() * quoteModernArt.length);
         $("#artQuote").html(`<h1>${quoteModernArt[random1]}</h1><h2>${modernArt.name} ${sentence1A[random1]}</h2>`);
-        $("#gamePlayText").html(`<p class="gamePlayP">${classicArt.name} loses ${modernArt.attackpoint} year${modernArt.attackpoint===1?'':'s'} of his life...  Only ${classicArt.hitpoints} good painting years left.</p><p class="gamePlayP">But ${classicArt.name} ${sentence1B[random1]}</p>`);
+        $("#gamePlayText").html(`<p class="gamePlayP">${classicArt.name} loses ${modernArt.attackpoint} year${modernArt.attackpoint===1?'':'s'} of his life...  Only ${classicArt.hitpoints} good painting year${classicArt.hitpoints===1?'':'s'} left.</p><p class="gamePlayP">...but ${classicArt.name} ${sentence1B[random1]}</p>`);
         console.log(classicArt);
-    } else if (!modernArt.dead && classicArt.dead){
-        // Classic art dead
-         $("#artQuote").html(`<h1 id="modernArtWinner">MODERN Art wins!!!</h1>`);
-         $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p>`);
-         $('#call-api-btn2').attr('disabled', 'disabled');
-         $('#call-api-btn1').attr('disabled', 'disabled');
-     } else if(!classicArt.dead && modernArt.dead){
-         // Modern art dead
-         $("#artQuote").html(`<h1 id="classicArtWinner">CLASSICAL Art wins!!!</h1>`);
-         $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p>`);
-         $('#call-api-btn2').attr('disabled', 'disabled');
-         $('#call-api-btn1').attr('disabled', 'disabled');
-     } else if(classicArt.dead && modernArt.dead){
+        } else if(!modernArt.dead && classicArt.dead){
+        // Modern art wins - Classic art dead
+            $("#artQuote").html(`<h1 id="modernArtWinner">MODERN Art wins!!!</h1><p>Game over for ${classicArt.name} and linear perspective</p>`);
+            $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p>`);
+            $('#call-api-btn2').attr('disabled', 'disabled');
+            $('#call-api-btn1').attr('disabled', 'disabled');
+        } else if(!classicArt.dead && modernArt.dead){
+         // Classic art wins - Modern art dead
+            $("#artQuote").html(`<h1 id="classicArtWinner">CLASSICAL Art wins!!!</h1><p>Game over for ${modernArt.name} and the 20th century</p>`);
+            $("#gamePlayText").html(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left..</p><p>${modernArt.name} has no years left..</p>`);
+            $('#call-api-btn2').attr('disabled', 'disabled');
+            $('#call-api-btn1').attr('disabled', 'disabled');
+        } else if(classicArt.dead && modernArt.dead){
          // both art dead
-         $("#artQuote").html(`<h1 id="gameOver">No winners...art is dead....</h1>`);
-         $("#gamePlayText").html(`<p>${modernArt.name} has no years left..</p><p>...${classicArt.name} also has no years left... </p>`); 
-         $('#call-api-btn2').attr('disabled', 'disabled');
-         $('#call-api-btn1').attr('disabled', 'disabled');
-     } else {
+            $("#artQuote").html(`<h1 id="gameOver">No winners...art is dead....</h1>`);
+            $("#gamePlayText").html(`<p>${modernArt.name} has no years left..</p><p>...${classicArt.name} also has no years left... </p>`); 
+            $('#call-api-btn2').attr('disabled', 'disabled');
+            $('#call-api-btn1').attr('disabled', 'disabled');
+        } else {
          // else must be error
-         $("#artQuote").html(`<h2>Oops...look like there's paint on our face.</h2>`);
-     };
-    const imgData1 = $.get(
-    `https://picsum.photos/v2/list`, (data1) => { //  image from a moden art collection appearing
-        // Returning all data
-        // Extract info
-            const i = Math.floor(Math.random() * 31); // change '31' depending on how many images in array
-            const dataModernArt = data1[i]; // change [i] to [random number 1-500]
-            const id1 = dataModernArt.id; 
-            const width = 600;
-            const height = 400;
-            const author1 = dataModernArt.author;
-            const url1 = `https://picsum.photos/id/${id1}/${width}/${height}`;
-    
-            console.log(id1);
-            console.log(author1);
-            console.log(url1);
-    
-            // Creating elements to add those responses
-            // const image1 = `<p id="imageP1"><img class="image-cell-2" src="${url1}"></img></p>`;
-            // const authorName1 = `<p>${author1}</p>`; 
-            // const imageUrl = `<a id="3" href="${url}" target="_blank">Go to image</a>`;
-            
-            //Appending the elements on the DOM
-            $('#mainCanvas').attr('src', url1);
-            console.log('url1:', `${url1}`);
-            // $("#divArtBattle").prepend(image1);
-            // $("#imageP1").append(authorName1);
-            // $("#col-2").append(imageUrl);
-        }
-    );
-});
+            $("#artQuote").html(`<h2>Oops...look like there's paint on our face.</h2>`);
+        } 
+}
+);
 
 // Classic Art attacks - Button 2
 $("#call-api-btn2").on("click", () => { 
@@ -236,16 +234,21 @@ $("#call-api-btn2").on("click", () => {
     // allow attack functions to be read throughout script
     const modernArt = window.modernArt;
     const classicArt = window.classicArt;
-
     // classic art attacks
     classicArt.attackEnemy(modernArt);
     $('#modernArtVitals').html(`<p> Life: ${modernArt.hitpoints<1?0:modernArt.hitpoints} years</p>`);
     console.log(modernArt);
     // gameplay - display text, images under various alive/dead conditions
     if(!modernArt.dead && !classicArt.dead){
-        // if both art alive 
+    // if both still alive, gameplay
+    //paint something
+    const i = Math.floor(Math.random() * artistPaintings[classicArt.name.toLowerCase()].length); 
+    const classicArtImageURL = artistPaintings[classicArt.name.toLowerCase()][i].url;
+    $('#mainCanvas').attr('src', classicArtImageURL);
+    console.log('classicArtImageURL:', `${classicArtImageURL}`);
+        // say something
         const quoteClassicArt = [
-            `"Eat my slow, painful lead poisoning for the sake of your art!!!"`, 
+            `"Eat my lead poisoning for the sake of your art!!!"`, 
             `"Paint or paint not, there is no try ..."`,
             `"Draw a circle...then draw the rest of the f$%*ing head!"`
         ];
@@ -257,24 +260,24 @@ $("#call-api-btn2").on("click", () => {
         const sentence2B = [
             `is still young and beautiful... watch out.`, 
             `eats pain(t) for breakfast and is coming for you...`,
-            `is still in the studio... and the student will soon become the master.`
+            `is still in the studio... the student will become the master.`
         ];
         const random2 = Math.floor(Math.random() * quoteClassicArt.length);
         console.log(quoteClassicArt[random2]);
 
         $("#artQuote").html(`<h1>${quoteClassicArt[random2]}</h1><h2>${classicArt.name} ${sentence2A[random2]}</h2>`);
-        $("#gamePlayText").html(`<p class="gamePlayP">${modernArt.name} loses ${classicArt.attackpoint} year${classicArt.attackpoint===1?'':'s'} of his life...  Only ${modernArt.hitpoints} good painting years left.</p><p>But ${modernArt.name} ${sentence2B[random2]}.</p>`);
+        $("#gamePlayText").html(`<p class="gamePlayP">${modernArt.name} loses ${classicArt.attackpoint} year${classicArt.attackpoint===1?'':'s'} of his life...  Only ${modernArt.hitpoints} good painting year${modernArt.hitpoints===1?'':'s'} left.</p><p>But ${modernArt.name} ${sentence2B[random2]}.</p>`);
         console.log(modernArt);
     } else if (!modernArt.dead && classicArt.dead){
        // Classic art dead
-        $("#artQuote").html(`<h1 id="modernArtWinner">MODERN Art wins!!!</h1>`);
+        $("#artQuote").html(`<h1 id="modernArtWinner">MODERN Art wins!!!</h1><p>Game over for ${classicArt.name} and linear perspective</p>`);
         $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p>`);
         $('#call-api-btn2').attr('disabled', 'disabled');
         $('#call-api-btn1').attr('disabled', 'disabled');
     } else if(!classicArt.dead && modernArt.dead){
         // Modern art dead
-        $("#artQuote").html(`<h1 id="classicArtWinner">CLASSICAL Art wins!!!</h1>`);
-        $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p>`);
+        $("#artQuote").html(`<h1 id="classicArtWinner">CLASSICAL Art wins!!!</h1><p>Game over for ${modernArt.name} and the 20th century</p>`);
+        $("#gamePlayText").html(`<p>${classicArt.name} has ${classicArt.hitpoints} year${classicArt.hitpoints>1?'s':''} left..</p><p>${modernArt.name} has no years left..</p>`);
         $('#call-api-btn2').attr('disabled', 'disabled');
         $('#call-api-btn1').attr('disabled', 'disabled');
     } else if(classicArt.dead && modernArt.dead){
@@ -287,38 +290,10 @@ $("#call-api-btn2").on("click", () => {
         // else must be error
         $("#artQuote").html(`<h2>Oops...look like there's paint on our face.</h2>`);
     };
-
-    if(!classicArt.dead && !modernArt.dead){
-        const imgData2 = $.get(
-            `https://picsum.photos/v2/list/`, (data2) => {
-                // Returning all data
-                console.log(data2);
-                // Extract info
-                // have to put in an if() statement for not returning results where 'undefined' (e.g. no url)
-                    const i = Math.floor(Math.random() * 30);  // change '31' depending on how many images in array
-                    const dataClassicArt = data2[i];
-                    const id2 = dataClassicArt.id; // why does this keep throwing an error?
-                    const width = 600;
-                    const height = 400;
-                    const author2 = dataClassicArt.author;
-                    const url2 = `https://picsum.photos/id/${id2}/${width}/${height}`;
-                    console.log(id2);
-                    console.log(author2);
-                    console.log(url2);
-                    // Creating elements to add those responses
-                    $('#mainCanvas').attr('src', url2);
-                    console.log('url2:', `${url2}`);
-                    // const image2 = `<p id="imageP2"><img class="image-cell-2" src="${url2}"></img></p>`;
-                    // const authorName2 = `<p>${author2}</p>`; 
-                    // const imageUrl = `<a id="3" href="${url}" target="_blank">Go to image</a>`;
-                    //Appending the elements on the DOM
-                    $("#divArtBattle").html(`<p>${author2} </p><a id="3" href="${url}" target="_blank"> (Click for image reference)</a>`);
-                    // $("#imageP2").append(authorName2);
-                    // $("#col-2").append(imageUrl);
-                })
-    }
 }
 );
+
+
 
 
 
