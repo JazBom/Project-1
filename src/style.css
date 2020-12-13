@@ -70,6 +70,7 @@ p.gamePlayP {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 9rem;
     scroll-margin-top: 0;
+    margin: 0;
     padding-top: 0;
     padding-bottom: 0;
 }
@@ -78,11 +79,12 @@ p.gamePlayP {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1.1rem;
     padding-top: .1rem;
-    padding-bottom: 1rem;
+    padding-bottom: .1rem;
+    margin: 0;
     text-align: center;
 }
 #grid {
-    padding-top: 50px;
+    padding-top: 5px;
     height: 90vh;
     margin: 1rem;
     display: grid;
