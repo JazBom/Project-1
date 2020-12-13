@@ -182,7 +182,7 @@ $("#call-api-btn1").on("click", () => {
         // Modern art wins - Classic art dead
             $("#artQuote").html(`<h1 id="modernArtWinner">MODERN Art wins!!!</h1>`);
             $('#mainCanvas').attr('src', 'https://static01.nyt.com/images/2012/08/24/world/europe/24christ-span/24christ-span-superJumbo.jpg?quality=90&auto=webp');
-            $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p><h2>Game over for ${classicArt.name} and anatomical references.</h2>`);
+            $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p><h2>Game over for ${classicArt.name} and linear perspective.</h2>`);
             $('#call-api-btn2').attr('disabled', 'disabled');
             $('#call-api-btn1').attr('disabled', 'disabled');
         } else if(!classicArt.dead && modernArt.dead){
@@ -248,7 +248,7 @@ $("#call-api-btn2").on("click", () => {
        // Classic art dead
         $("#artQuote").html(`<h1 id="modernArtWinner">MODERN Art wins!!!</h1>`);
         $('#mainCanvas').attr('src', 'https://static01.nyt.com/images/2012/08/24/world/europe/24christ-span/24christ-span-superJumbo.jpg?quality=90&auto=webp');
-        $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p><h2>Game over for ${classicArt.name} and linear perspective.</h2>`);
+        $("#gamePlayText").html(`<p>${modernArt.name} has ${modernArt.hitpoints} year${modernArt.hitpoints>1?'s':''} left..</p><p>${classicArt.name} has no years left..</p><h2>Game over for ${classicArt.name} and anatomical reference.</h2>`);
         $('#call-api-btn2').attr('disabled', 'disabled');
         $('#call-api-btn1').attr('disabled', 'disabled');
     } else if(!classicArt.dead && modernArt.dead){
