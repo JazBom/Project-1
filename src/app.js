@@ -110,7 +110,7 @@ classicArtPlayerArray.map((player, index) => {
 
 // Artwork image data
 let artistPaintings;
-const imgData = $.get(
+$.get(
     `https://179iper8g8.execute-api.ap-southeast-2.amazonaws.com/prod/artist-artworks`, (data) => {
         // Returning all data
         console.log(data);
