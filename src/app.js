@@ -2,10 +2,11 @@ console.log("App is running.");
 
 // info re Game Players (classes)
 class Player {
-    constructor(name, hitpoints){
+    constructor(id, name, hitpoints){
         this.name = name;
         this.hitpoints = hitpoints;
         this.dead = false;
+        this.id = id;
     }
      // initiate an attack
     attack(enemy, damage){
@@ -24,8 +25,8 @@ class Player {
 };
 // players
 class ModernArtPlayer extends Player {
-    constructor(name, hitpoints){
-        super(name, hitpoints);
+    constructor(id, name, hitpoints){
+        super(id, name, hitpoints);
         }
     attackEnemy(enemy) {
         this.attackpoint = Math.floor(Math.random() * 4);
@@ -34,8 +35,8 @@ class ModernArtPlayer extends Player {
     }
 };
 class ClassicArtPlayer extends Player {
-    constructor(name, hitpoints){
-        super(name, hitpoints);
+    constructor(id, name, hitpoints){
+        super(id, name, hitpoints);
     }
     attackEnemy(enemy) {
         this.attackpoint = Math.floor(Math.random() * 2) + 1;
@@ -49,85 +50,108 @@ let playerArray = [
     {name: 'Picasso',
     lifespan: 9,
     type: 'modern',
-    avatar: 'https://www.pablopicasso.org/images/paintings/self-portrait-1907.jpg'
+    avatar: 'https://www.pablopicasso.org/images/paintings/self-portrait-1907.jpg',
+    id: '600ba8fbe42703289c257e87'
     },
     {name:'Cezanne',
     lifespan: 7,
     type: 'modern',
-    avatar: 'https://media.newyorker.com/photos/5abd7107e4b526446411b381/master/w_2560%2Cc_limit/180409_r31842.jpg'
+    avatar: 'https://media.newyorker.com/photos/5abd7107e4b526446411b381/master/w_2560%2Cc_limit/180409_r31842.jpg',
+    id: '600ba90fe42703289c257e88'
     },
     {name:'Gauguin',
     lifespan: 5,
     type: 'modern',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/6/60/Self-Portrait_by_Paul_Gauguin%2C_1885.jpg'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/6/60/Self-Portrait_by_Paul_Gauguin%2C_1885.jpg',
+    id: '600ba922e42703289c257e89'
     },
     {name:'Munch',
     lifespan: 8,
     type: 'modern',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Edvard_Munch_-_Self-Portrait_%281895%29_G0192-59_-_Google_Art_Project.jpg/800px-Edvard_Munch_-_Self-Portrait_%281895%29_G0192-59_-_Google_Art_Project.jpg'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Edvard_Munch_-_Self-Portrait_%281895%29_G0192-59_-_Google_Art_Project.jpg/800px-Edvard_Munch_-_Self-Portrait_%281895%29_G0192-59_-_Google_Art_Project.jpg',
+    id: '600ba94ae42703289c257e8a'
     },
     {name:'vanGogh',
     lifespan: 4,
     type: 'modern',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg/1024px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg/1024px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg',
+    id: '600ba95de42703289c257e8b'
     }, 
     {name:'Raffaello',
     lifespan: 4,
     type: 'classic',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Raffaello_Sanzio.jpg/1024px-Raffaello_Sanzio.jpg'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Raffaello_Sanzio.jpg/1024px-Raffaello_Sanzio.jpg',
+    id: '600ba9f4e42703289c257e8d'
     },
     {name:'Michelangelo',
     lifespan: 9,
     type: 'classic',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg/440px-Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg/440px-Michelangelo_Daniele_da_Volterra_%28dettaglio%29.jpg',
+    id: '600baa07e42703289c257e8e'
     },
     {name:'daVinci',
     lifespan: 7,
     type: 'classic',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Leonardo_self.jpg'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Leonardo_self.jpg',
+    id: '600baa0ee42703289c257e8f'
     },
     {name:'Titian',
     lifespan: 9,
     type: 'classic',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Self-portrait_of_Titian.jpg/1024px-Self-portrait_of_Titian.jpg'
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Self-portrait_of_Titian.jpg/1024px-Self-portrait_of_Titian.jpg',
+    id: '600baa1de42703289c257e90'
     },
     {name: 'Boticelli',
     lifespan: 7,
     type: 'classic',
-    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Sandro_Botticelli_083.jpg/1280px-Sandro_Botticelli_083.jpg'
-    }
+    avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Sandro_Botticelli_083.jpg/1280px-Sandro_Botticelli_083.jpg',
+    id: '600baa29e42703289c257e91'   
+}
 ]
 
 const modernArtPlayerArray = playerArray.filter((player) => player.type === 'modern');
 const classicArtPlayerArray = playerArray.filter((player) => player.type === 'classic');
 
-modernArtPlayerArray.map((player, index) => {
-    $('#modernArtPlayers').append(`<option value='${index}'>${player.name}</option>`);
+modernArtPlayerArray.map((player) => {
+    $('#modernArtPlayers').append(`<option value='${player.id}'>${player.name}</option>`);
 });
-classicArtPlayerArray.map((player, index) => {
-    $('#classicArtPlayers').append(`<option value='${index}'>${player.name}</option>`);
+classicArtPlayerArray.map((player) => {
+    $('#classicArtPlayers').append(`<option value='${player.id}'>${player.name}</option>`);
 });
 
 // Artwork image data
-let artistPaintings;
+let allPaintings;
 $.get(
-    `https://179iper8g8.execute-api.ap-southeast-2.amazonaws.com/prod/artist-artworks`, (data) => {
+    `http://localhost:3000/api/images/all`,
+    (data) => {
         // Returning all data
         console.log(data);
         // Extract info
-        artistPaintings = data;
+        allPaintings = data;
+        // artistPaintsingsByName = data[artist].imageUrl;
         })
+
+// let artistPaintings;
+// $.get(
+    // `https://179iper8g8.execute-api.ap-southeast-2.amazonaws.com/prod/artist-artworks`, --> this was external API on amazon
+//     (data) => {
+//         // Returning all data
+//         console.log(data);
+//         // Extract info
+//         artistPaintings = data;
+//         })
 
 // ENTRY
 //choose and declare Players
 function setPlayer(artistType, player){
-    $(`#${artistType}ArtAvatar`).attr("src", `${player.avatar}`);
-    $(`#${artistType}ArtVitals`).html(`<p> Life: ${player.lifespan} years</p>`); 
+    $(`.${artistType} > .avatar`).attr("src", `${player.avatar}`);
+    // $(`#${artistType}ArtVitals`).html(`<p> Life: ${player.lifespan} years</p>`); 
+    $(`.${artistType} > .vitals`).html(`<p> Life: ${player.lifespan} years</p>`);
     // make player data accessible throughout script 
     if(artistType==='modern'){
-        window.modernArt = new ModernArtPlayer(player.name, player.lifespan);
+        window.modernArt = new ModernArtPlayer(player.id, player.name, player.lifespan);
     } else {
-        window.classicArt = new ClassicArtPlayer(player.name, player.lifespan);
+        window.classicArt = new ClassicArtPlayer(player.id, player.name, player.lifespan);
     }
 };
 //choose starting player in reverse
@@ -136,11 +160,19 @@ $("#call-api-btn" + secondPlayer).attr('disabled', 'disabled');
 
 // select players from drop down menu
 $('#modernArtPlayers').on("change", (event) => {
-    setPlayer('modern', modernArtPlayerArray[event.target.value]);
+    // setPlayer('modern', modernArtPlayerArray[event.target.value]);
+    const modernArtist = modernArtPlayerArray.find((artist) => {
+        return artist.id === event.target.value;
+    });
+    setPlayer('modern', modernArtist);
 });
+
 $('#classicArtPlayers').on("change", (event) => {
-    setPlayer('classic', classicArtPlayerArray[event.target.value]);
-    // const classicArtImageURL = `${[index].name.toLowerCase}ImageURL`;
+    // setPlayer('classic', classicArtPlayerArray[event.target.value]);
+    const classicArtist = classicArtPlayerArray.find((artist) => {
+        return artist.id === event.target.value;
+    });
+    setPlayer('classic', classicArtist);
 });
 
 // Game play
@@ -155,13 +187,40 @@ $("#call-api-btn1").on("click", () => {
     // invoke Modern Art attack as result of button1 click event
     modernArt.attackEnemy(classicArt);
     //updateLifespan of enemy classicart (player2)
-    $('#classicArtVitals').html(`<p> Life: ${classicArt.hitpoints<1?0:classicArt.hitpoints} years</p>`);
+    $('.classic > .vitals').html(`<p> Life: ${classicArt.hitpoints<1?0:classicArt.hitpoints} years</p>`);
     //resulting text and image display under various attacker/ enemy alive/dead conditions....
     if(!modernArt.dead && !classicArt.dead){
     // if both still alive -> 
     // paint something
-    const i = Math.floor(Math.random() * artistPaintings[modernArt.name.toLowerCase()].length); 
-    const modernArtImageURL = artistPaintings[modernArt.name.toLowerCase()][i].url;
+    // NOTES ON USING FAT ARROW SYNTAX - EVOLUTION BELOW
+
+    // let artistPaintings = [];
+    // for(let i=0;i<allPaintings.length;i++) {
+    //     if (allPaintings[i].artistNameId === modernArt.id) {
+    //         artistPaintings.push(artistPaintings[i]);
+    //     }
+    // }
+
+    // let artistPaintings = allPaintings.filter(function(painting) {
+    //     if(painting.artistNameId === modernArt.id){
+    //         return true;
+    //     } else {
+    //     return false;
+    //     }
+    // });
+
+    // let artistPaintings = allPaintings.filter(function(painting) {
+    //     return painting.artistNameId === modernArt.id;
+    // });
+
+    // let artistPaintings = allPaintings.filter((painting) => {
+    //     return painting.artistNameId === modernArt.id;
+    // });
+    let artistPaintings = allPaintings.filter((painting) => painting.artistNameId === modernArt.id);
+    const i = Math.floor(Math.random() * artistPaintings.length); 
+    const modernArtImageURL = artistPaintings[i].imageUrl;
+    // const i = Math.floor(Math.random() * artistPaintings[modernArt.name.toLowerCase()].length); 
+    // const modernArtImageURL = artistPaintings[modernArt.name.toLowerCase()][i].url;
     $('#mainCanvas').attr('src', modernArtImageURL);
     // say stuff
         const quoteModernArt = [
@@ -218,14 +277,16 @@ $("#call-api-btn2").on("click", () => {
     const classicArt = window.classicArt;
     // classic art attacks
     classicArt.attackEnemy(modernArt);
-    $('#modernArtVitals').html(`<p> Life: ${modernArt.hitpoints<1?0:modernArt.hitpoints} years</p>`);
+    $('.modern > .vitals').html(`<p> Life: ${modernArt.hitpoints<1?0:modernArt.hitpoints} years</p>`);
     console.log(modernArt);
     // display text, images under various alive/dead conditions
     if(!modernArt.dead && !classicArt.dead){
     // if both still alive -->
         //paint something
-        const i = Math.floor(Math.random() * artistPaintings[classicArt.name.toLowerCase()].length); 
-        const classicArtImageURL = artistPaintings[classicArt.name.toLowerCase()][i].url;
+        let artistPaintings = allPaintings.filter((painting) => painting.artistNameId === classicArt.id);
+        const i = Math.floor(Math.random() * artistPaintings.length); 
+        const classicArtImageURL = artistPaintings[i].imageUrl;
+
         $('#mainCanvas').attr('src', classicArtImageURL);
         // say something
         const quoteClassicArt = [
